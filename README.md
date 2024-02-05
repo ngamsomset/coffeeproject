@@ -17,6 +17,8 @@ Some useful information for frontend.
 - by default all of the component of Next.js is server component, this means you can't use hooks in the component nor does client interaction like `useState` or `useReducer`.
   if you want to use those, you need to turn that component into client component by add `use client` at the TOP of the file.
 
+- this project use tailwind.
+
 ## backend
 
 - database is postgres. host on Vercel.

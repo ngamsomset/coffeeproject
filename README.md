@@ -1,5 +1,9 @@
 ### READ ME!
 
+## to start
+
+- run `npm install` to make sure you have required depedencies.
+
 ## .env
 
 - you need to get .env from me to be able to connect to the DB. template is in `.env.example`

@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### READ ME!
 
-## Getting Started
+## .env
 
-First, run the development server:
+- you need to get .env from me to be able to connect to the DB. template is in `.env.example`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## frontend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Some useful information for frontend.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- this project use Next.js, routing of this project is directory routing(default of Next.js). in `/app` directory `pages.tsx` is your home page.
+  `/about` = `homeurl.com/about`
+  `/cafes` = `homeurl.com/cafes`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`page.tsx` in each directory act as `index.html`
 
-## Learn More
+- by default all of the component of Next.js is server component, this means you can't use hooks in the component nor does client interaction like `useState` or `useReducer`.
+  if you want to use those, you need to turn that component into client component by add `use client` at the TOP of the file.
 
-To learn more about Next.js, take a look at the following resources:
+## backend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- database is postgres. host on Vercel.
+- DO NOT RUN `seed` COMMAND. everytime that you run will cost DB operation to happen, and we have limited amount.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Anton
 
-## Deploy on Vercel
+there are two places that you need to look into. in `/app/lib` there are two samples file for you to create schema. `definitions.ts` contains template of your data, it's where you define types of your data.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`placeholder-data.js` contain real data that you want to insert into DB.

@@ -22,8 +22,7 @@ async function seedUsers(client) {
         const hashedPassword = await bcrypt.hash(user.password, 10);
         return client.sql`
              INSERT INTO users (id, name, email, password)
-             VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-             ON CONFLICT (id) NO NOTHING;
+             VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword});
             `;
       }),
     );
@@ -38,3 +37,14 @@ async function seedUsers(client) {
     console.error('Error seeding user: ', error);
   }
 }
+
+async function main() {
+  const client = await db.connect();
+  await seedUsers(client);
+
+  await client.end();
+}
+
+main().catch((err) => {
+  console.error('An error occued while trying to seed data to database', err);
+});

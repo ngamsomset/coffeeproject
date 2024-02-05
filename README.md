@@ -18,6 +18,7 @@ Some useful information for frontend.
   if you want to use those, you need to turn that component into client component by add `use client` at the TOP of the file.
 
 - this project use tailwind.
+- if you have asset like images, it goes in `/public`.
 
 ## backend
 

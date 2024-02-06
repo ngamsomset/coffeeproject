@@ -1,10 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { User } from './definitions';
-import { unstable_noStore as noStore } from 'next/cache';
 
 export async function getAllUser() {
-  noStore();
-
   try {
     const user = await sql`SELECT * FROM users`;
     return user.rows[0] as User;

@@ -2,11 +2,11 @@ const { db } = require('@vercel/postgres');
 const { users } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
 
-async function mlScheme(client) {
+async function seedMLScheme(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
-    const createTable = await client.sql`
+    const createMLDataScheme = await client.sql`
         CREATE TABLE IF NOT EXISTS coffeeUsers(
           userID VARCHAR(255) PRIMARY KEY,
           age INT,
@@ -54,8 +54,7 @@ async function mlScheme(client) {
         `;
       console.log('ML scheme created');
 
-      const insertMLData = await client.sql`
-      
+    const insertMLData = await client.sql`
         INSERT INTO cafeUsers("userID","age","gender","postindex") VALUES (1,40,2,2515);
         INSERT INTO cafeUsers("userID","age","gender","postindex") VALUES (2,45,2,2226);
         INSERT INTO cafeUsers("userID","age","gender","postindex") VALUES (3,19,0,2502);
@@ -1317,14 +1316,10 @@ async function mlScheme(client) {
         INSERT INTO cafeFeatures(cafeID,cafeFeatureID,featureStatus,entryDate) VALUES (49,1,1,'2/8/2024 14:35:54');
         INSERT INTO cafeFeatures(cafeID,cafeFeatureID,featureStatus,entryDate) VALUES (50,1,1,'2/8/2024 14:35:57');
         INSERT INTO cafeFeatures(cafeID,cafeFeatureID,featureStatus,entryDate) VALUES (50,2,1,'2/8/2024 14:35:58');
-        
         `;
       console.log('Data inserted into ML scheme');
-
-
-
     return {
-      createTable, mlDataInsert
+      createMLDataScheme, insertMLData
     };
   } catch (error) {
     console.error('Error seeding user: ', error);
@@ -1371,7 +1366,7 @@ async function seedUsers(client) {
 async function main() {
   const client = await db.connect();
   await seedUsers(client);
-  await mlScheme(client);
+  await seedMLScheme(client);
   await client.end();
   
 }

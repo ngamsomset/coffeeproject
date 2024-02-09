@@ -7,6 +7,86 @@ async function seedUsers(client) {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
     const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS coffeeUsers(
+          userID VARCHAR(255) PRIMARY KEY,
+          age INT,
+          gender INT,
+          postIndex VARCHAR(4)
+          );
+        `;
+        console.log('created "coffeeUsers" table');
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS answers(
+          userID VARCHAR(255),
+          questionID VARCHAR(255),
+          answer INT,
+          answerDate VARCHAR(50),
+          PRIMARY KEY (userID, questionID, answerDate)
+          );
+        `;
+        console.log('created "answers" table');
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS cafeMarks (
+          userID VARCHAR(255),
+          cafeID VARCHAR(255),
+          categoryID VARCHAR(255),
+          markValue INT,
+          markDate VARCHAR(55),
+          PRIMARY KEY (userID, cafeID, categoryID, markDate)
+          );
+        `;
+        console.log('created "cafeMarks" table');
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS cafeFeatures (
+          cafeID VARCHAR(255),
+          cafeFeatureID INT,
+          featureStatus INT,
+          entryDate VARCHAR(50),
+          PRIMARY KEY (cafeID, cafeFeatureID, entryDate)
+          );
+        `;
+        console.log('created "cafeFeatures" table');
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS questions (
+          questionID VARCHAR(255) PRIMARY KEY,
+          question VARCHAR(255)
+          );
+        `;
+        console.log('created "questions" table');
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS cafes (
+          cafeID  VARCHAR(255) PRIMARY KEY,
+          cafeName VARCHAR(255)
+          );
+        `;
+        console.log('created "cafes" table');
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS markCategories (
+          categoryID VARCHAR(255) PRIMARY KEY,
+          categryName VARCHAR(255)
+          );
+        `;
+        console.log('created "markCategories" table');
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS cafeFeatureList (
+          cafeFeatureID VARCHAR(255) PRIMARY KEY,
+          featureName VARCHAR(255) NOT NULL
+          );
+        `;
+        console.log('created "markCategories" table');
+
+
+
+
+        
+    const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS users (
             id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             name VARCHAR(255) NOT NULL,

@@ -1319,7 +1319,7 @@ async function mlScheme(client) {
         INSERT INTO cafeFeatures(cafeID,cafeFeatureID,featureStatus,entryDate) VALUES (50,2,1,'2/8/2024 14:35:58');
         
         `;
-      console.log('ML scheme created');
+      console.log('Data inserted into ML scheme');
 
 
 

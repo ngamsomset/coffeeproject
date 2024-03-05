@@ -1,0 +1,157 @@
+{
+    "definitions": {
+      "User": {
+        "properties": {
+          "postcode": {
+            "description": "Postcode of the user",
+            "type": "string"
+          },
+          "gender": {
+            "description": "Gender of the user",
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2
+            ]
+          },
+          "age": {
+            "description": "Age of the user",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "postcode",
+          "gender",
+          "age"
+        ]
+      },
+      "Recommendation": {
+        "properties": {
+          "cafe": {
+            "description": "Cafe identifier",
+            "type": "string"
+          },
+          "ranking": {
+            "description": "Ranking of the cafe for a given user",
+            "type": "numeric"
+          }
+        },
+        "required": [
+          "cafeId",
+          "ranking"
+        ]
+      }
+    },
+    "info": {
+      "title": "Cafe recommendation service",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/users/{id}": {
+        "get": {
+          "summary": "Get user",
+          "description": "Returns user information for a user with a given id",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "User identifier",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User information",
+              "content": {
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          },
+          "tags": [
+            "users"
+          ]
+        },
+        "put": {
+          "summary": "Add user",
+          "description": "Ads user to the database",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "User identifier",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User details",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Updated"
+            }
+          },
+          "tags": [
+            "users"
+          ]
+        }
+      },
+      "/users/{id}/recommendations": {
+        "get": {
+          "summary": "Get recommendations",
+          "description": "Returns recommndations for a given user",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "User identifier",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "in": "query",
+              "name": "start",
+              "description": "Zero-based position of the first prediction to return",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "in": "query",
+              "name": "size",
+              "description": "Number of predictions to return",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Recommendations",
+              "content": {
+                "schema": {
+                  "$ref": "#/definitions/Recommendation"
+                }
+              }
+            }
+          },
+          "tags": [
+            "users"
+          ]
+        }
+      }
+    },
+    "swagger": "2.0"
+  }

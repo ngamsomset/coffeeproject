@@ -41,6 +41,60 @@
           "cafeId",
           "ranking"
         ]
+      },
+      "Evaluation": {
+        "properties": {
+          "cafe": {
+            "description": "Cafe identifier",
+            "type": "string"
+          },
+          "cafeCategoryIDList": {
+            "description": "List of categories for evaluation",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "example": ["id1", "Id2", "id3"]
+          },
+          "cafeCategoryIDValuesList": {
+            "description": "List of categories for evaluation",
+            "type": "array",
+            "items": {
+                "type": "integer"
+            },
+            "example": ["4", "5", "5"]
+          }
+        },
+        "required": [
+          "cafe",
+          "cafeCategoryIDList",
+          "cafeCategoryIDMarksList"
+        ]
+      },
+      "Response": {
+        "properties": {
+          "questionIDList": {
+            "description": "List of IDs for answered questions",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": "true",
+            "example": ["question_id1","question_id2","question_id3","question_id4","question_id5" ]
+          },
+          "questionsValuesList": {
+            "description": "List of answers",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "example": ["2", "4", "2", "2", "1"]
+          }
+        },
+        "required": [
+          "questionIDList",
+          "questionsValuesList"
+        ]
       }
     },
     "info": {
@@ -64,7 +118,7 @@
           ],
           "responses": {
             "200": {
-              "description": "User information",
+              "description": "Success",
               "content": {
                 "schema": {
                   "$ref": "#/definitions/User"
@@ -99,7 +153,7 @@
           ],
           "responses": {
             "204": {
-              "description": "Updated"
+              "description": "Success"
             }
           },
           "tags": [
@@ -139,12 +193,76 @@
           ],
           "responses": {
             "200": {
-              "description": "Recommendations",
+              "description": "Success",
               "content": {
                 "schema": {
                   "$ref": "#/definitions/Recommendation"
                 }
               }
+            }
+          },
+          "tags": [
+            "users"
+          ]
+        }
+      },
+      "/users/{id}/responses": {
+        "put": {
+          "summary": "User's answers collection",
+          "description": "Reciev user's answers to store them into a database",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "User identifier",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User's question responses",
+              "schema": {
+                "$ref": "#/definitions/Response"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Success"
+            }
+          },
+          "tags": [
+            "users"
+          ]
+        }
+      },
+      "/users/{id}/ranking": {
+        "put": {
+          "summary": "User's cafe ranking collection",
+          "description": "Recieve user's cafe marks to store them into a database",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "description": "User identifier",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User's cafe rankings",
+              "schema": {
+                "$ref": "#/definitions/Evaluation"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Success"
             }
           },
           "tags": [

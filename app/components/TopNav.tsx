@@ -10,8 +10,8 @@ const TopNav = () => {
     <Navbar.Start>
       <div className="hidden lg:flex">
         <Menu horizontal className="px-1 text-xl">
-          <Menu.Item><a href='/'>Home</a></Menu.Item>
-          <Menu.Item><a href='/cafes'>Café</a></Menu.Item>
+          <Menu.Item><Link href='/'>Home</Link></Menu.Item>
+          <Menu.Item><Link href='/cafes'>Cafés</Link></Menu.Item>
         </Menu>
       </div>
       <Dropdown>
@@ -35,8 +35,8 @@ const TopNav = () => {
     </Navbar.Center>
     <Navbar.End>
       <Menu horizontal className="px-1 hidden lg:flex text-xl">
-        <Menu.Item><a href='#'>Account</a></Menu.Item>
-        <Menu.Item><a href='/about'>About</a></Menu.Item>
+        <Menu.Item><Link href='/account'>Account</Link></Menu.Item>
+        <Menu.Item><Link href='/about'>About</Link></Menu.Item>
       </Menu>
       <div className='flex lg:hidden'>
         <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold">

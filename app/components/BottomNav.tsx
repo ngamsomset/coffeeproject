@@ -1,13 +1,9 @@
-import React from 'react'
 import Link from 'next/link';
 import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import Image from 'next/image'
 
 const BottomNav = () => {
-    let currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    
     return (
       <footer className='footer border z-10 border-l-transparent border-r-transparent text-white pb-0 border-b-transparent bg-[#EDE0D4]'>
           <div className='container pt-12 pb-12 flex flex-wrap justify-between mr-auto ml-auto px-4 mx-auto'>

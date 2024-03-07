@@ -11,9 +11,9 @@ const BottomNav = () => {
     return (
       <footer className='footer border z-10 border-l-transparent border-r-transparent text-white pb-0 border-b-transparent bg-[#EDE0D4]'>
           <div className='container pt-12 pb-12 flex flex-wrap justify-between mr-auto ml-auto px-4 mx-auto'>
-            <div className='flex w-full md:w-auto justify-center md:mt-0 md:justify-normal'>
-                <Image width="200" height="100" src={"/logos/Full_logo_Black.png"} alt="CafeMate logo"></Image>
-                <div className='ml-6 mx-auto'>
+            <div className='flex w-full md:w-auto justify-center md:mt-0 md:justify-normal flex-wrap'>
+                <Image width="250" height="100" src={"/logos/Full_logo_Black.png"} className="py-auto"alt="CafeMate logo"></Image>
+                <div className='md:ml-6 py-4 md:py-auto w-full text-center md:w-auto md:text-left'>
                     <Link href="/about" className='text-black'>About us</Link>
                     <br></br>
                     <Link href="/about" className='text-black'>Terms and conditions</Link>

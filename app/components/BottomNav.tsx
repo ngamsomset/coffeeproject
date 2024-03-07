@@ -15,14 +15,14 @@ const BottomNav = () => {
                     <Link href="/about" className='text-black'>Terms and conditions</Link>
                 </div>
             </div>
-            <div className='socials flex flex-row gap-2 justify-center md:justify-normal w-full md:w-auto'>
-                <Link href="#" target={"_blank"} className="transition duration-500 hover:scale-125">
+            <div className='socials flex flex-row gap-2 justify-center md:justify-normal w-full md:w-auto md:my-auto'>
+                <Link href="#" className="transition duration-500 hover:scale-125">
                     <FaFacebookSquare size={40} color='#101010'/>
                 </Link>
-                <Link href="#" target={"_blank"} className="transition duration-500 hover:scale-125">
+                <Link href="#" className="transition duration-500 hover:scale-125">
                     <FaInstagramSquare size={40} color='#101010'/>
                 </Link>
-                <Link href="#" target={"_blank"} className="transition duration-500 hover:scale-125">
+                <Link href="#" className="transition duration-500 hover:scale-125">
                     <FaSquareXTwitter size={40} color='#101010'/>
                 </Link>
             </div> 

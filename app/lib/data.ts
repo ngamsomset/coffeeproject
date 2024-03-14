@@ -23,7 +23,6 @@ export async function getAllCafes(query: string, currentPage: number) {
     console.error('Failed to fetch cafes: ', error);
     throw new Error('Failed to fetch cafes.');
   }
-
 }
 
 export async function fetchCafePages(query: string) {
@@ -35,5 +34,16 @@ export async function fetchCafePages(query: string) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total number of cafes.');
+  }
+}
+
+export async function getCafe(cafeId: number) {
+  noStore();
+  try {
+    const cafes = await sql`SELECT * FROM cafes WHERE cafes.cafeid = ${cafeId}`;
+    return cafes.rows[0];
+  } catch (error) {
+    console.error('Failed to fetch cafe: ', error);
+    throw new Error('Failed to fetch cafe.');
   }
 }

@@ -11,9 +11,12 @@ export async function getAllUser() {
   }
 }
 
-export async function getAllCafes() {
+const ITEMS_PER_PAGE = 9;
+export async function getAllCafes(query: string, currentPage: number) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
   try {
-    const cafes = await sql`SELECT * FROM cafes`;
+    const cafes = await sql`SELECT * FROM cafes WHERE cafes.cafename ILIKE ${`%${query}%`} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
     return cafes.rows;
   } catch (error) {
     console.error('Failed to fetch cafes: ', error);

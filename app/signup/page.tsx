@@ -1,3 +1,16 @@
-export default function Page() {
-  return <div>signup</div>;
+
+import React from 'react'
+import Signup from '../components/SignupInformation'
+
+
+const page = () => {
+  return (
+    <><section className="mt-12 max-w-screen-lg mx-auto ">
+      
+    </section><div className="container mx-auto p-4">
+        <Signup />
+      </div></>
+  )
 }
+
+export default page

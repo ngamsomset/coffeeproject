@@ -10,9 +10,9 @@ const BottomNav = () => {
             <div className='flex w-full md:w-auto justify-center md:mt-0 md:justify-normal flex-wrap'>
                 <Image width="250" height="100" src={"/logos/Full_logo_Black.png"} className="py-auto"alt="CafeMate logo"></Image>
                 <div className='md:ml-6 py-4 md:py-auto w-full text-center md:w-auto md:text-left'>
-                    <Link href="/about" className='text-black'>About us</Link>
+                    <Link href="/about" className='text-[#101010]'>About us</Link>
                     <br></br>
-                    <Link href="/about" className='text-black'>Terms and conditions</Link>
+                    <Link href="/about" className='text-[#101010]'>Terms and conditions</Link>
                 </div>
             </div>
             <div className='socials flex flex-row gap-2 justify-center md:justify-normal w-full md:w-auto md:my-auto'>

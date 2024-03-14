@@ -19,7 +19,7 @@ export default async function CafeList({
                 <CafeCard
                     name={cafe.cafename}
                     location='North Wollongong, NSW' //{cafe.location}
-                    slug="#" //{cafe.slug}
+                    slug={`/cafes/${cafe.cafeid}`}
                     imagePath='/images/cafe_street.jpg' //cafe.imagePath
                     key={index}
                 />

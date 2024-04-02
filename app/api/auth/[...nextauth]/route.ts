@@ -1,21 +1,21 @@
-import NextAuth from "next-auth/next";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { sql } from "@vercel/postgres";
-import { compare } from "bcrypt";
+import NextAuth from 'next-auth/next';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { sql } from '@vercel/postgres';
+import { compare } from 'bcrypt';
 
 const handler = NextAuth({
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
 
   pages: {
-    signIn: "/logintest",
+    signIn: '/logintest',
   },
 
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
         email: {},
         password: {},
@@ -27,8 +27,8 @@ const handler = NextAuth({
         const user = response.rows[0];
 
         const passwordCorrect = await compare(
-          credentials?.password || "",
-          user.password
+          credentials?.password || '',
+          user.password,
         );
 
         if (passwordCorrect) {
@@ -38,7 +38,7 @@ const handler = NextAuth({
           };
         }
 
-        console.log("credentials", credentials);
+        console.log('credentials', credentials);
         return null;
       },
     }),

@@ -1,5 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { User } from './definitions';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function getAllUser() {
   try {
@@ -11,13 +12,38 @@ export async function getAllUser() {
   }
 }
 
-export async function getAllCafes() {
+const ITEMS_PER_PAGE = 9;
+export async function getAllCafes(query: string, currentPage: number) {
+  noStore();
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
-    const cafes = await sql`SELECT * FROM cafes`;
+    const cafes = await sql`SELECT * FROM cafes WHERE cafes.cafename ILIKE ${`%${query}%`} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
     return cafes.rows;
   } catch (error) {
     console.error('Failed to fetch cafes: ', error);
     throw new Error('Failed to fetch cafes.');
   }
+}
 
+export async function fetchCafePages(query: string) {
+  noStore();
+  try {
+    const count = await sql`SELECT COUNT(*) FROM cafes WHERE cafes.cafename ILIKE ${`%${query}%`}`;
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of cafes.');
+  }
+}
+
+export async function getCafe(cafeId: number) {
+  noStore();
+  try {
+    const cafes = await sql`SELECT * FROM cafes WHERE cafes.cafeid = ${cafeId}`;
+    return cafes.rows[0];
+  } catch (error) {
+    console.error('Failed to fetch cafe: ', error);
+    throw new Error('Failed to fetch cafe.');
+  }
 }

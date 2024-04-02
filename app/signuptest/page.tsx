@@ -1,18 +1,18 @@
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
-import FormPage from "../components/form";
+import FormPage from '../components/RegisterForm';
 
 export default async function RegisterPage() {
   const session = await getServerSession();
 
   if (session) {
-    redirect("/");
+    redirect('/');
   }
 
   return (
-    <section className="bg-black h-screen flex items-center justify-center">
-      <div className="w-[600px]">
+    <section className='bg-black h-screen flex items-center justify-center'>
+      <div className='w-[600px]'>
         <FormPage />
       </div>
     </section>

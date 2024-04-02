@@ -10,7 +10,7 @@ const UserListPage: React.FC = () => {
     async function fetchUsers() {
       try {
         const fetchedUsers = await getAllUser();
-        setUsers(fetchedUsers); // Make sure fetchedUsers is an array of User objects
+        // setUsers(fetchedUsers); // Make sure fetchedUsers is an array of User objects
       } catch (error) {
         console.error('Failed to fetch users:', error);
       }
@@ -23,7 +23,7 @@ const UserListPage: React.FC = () => {
     <div>
       <h1>User List</h1>
       <ul>
-        {users.map(user => (
+        {users.map((user) => (
           <li key={user.id}>
             {user.name} - {user.email}
           </li>

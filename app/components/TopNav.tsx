@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, Dropdown, Navbar, Menu } from 'react-daisyui'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react';
 
 const TopNav = () => {
   return (
@@ -37,6 +38,7 @@ const TopNav = () => {
       <Menu horizontal className="px-1 hidden lg:flex text-xl">
         <Menu.Item><Link href='/account'>Account</Link></Menu.Item>
         <Menu.Item><Link href='/about'>About</Link></Menu.Item>
+        <Menu.Item><Link href='/api/auth/signout'>Signout</Link></Menu.Item>
       </Menu>
       <div className='flex lg:hidden'>
         <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold">

@@ -28,7 +28,7 @@ export async function getAllCafes(query: string, currentPage: number) {
 export async function fetchCafePages(query: string) {
   noStore();
   try {
-    const count = await sql`SELECT COUNT(*) FROM cafes WHERE cafes.cafename ILIKE ${`%${query}%`}`;
+    const count = await sql`SELECT COUNT(*) FROM csvCafes WHERE csvCafes.cafename ILIKE ${`%${query}%`}`;
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {

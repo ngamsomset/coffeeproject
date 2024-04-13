@@ -17,7 +17,7 @@ export async function getAllCafes(query: string, currentPage: number) {
   noStore();
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
-    const cafes = await sql`SELECT * FROM csvCafes WHERE csvCafes.cafename ILIKE ${`%${query}%`} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
+    const cafes = await sql`SELECT * FROM cafesDetailed WHERE cafesDetailed.cafename ILIKE ${`%${query}%`} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
     return cafes.rows;
   } catch (error) {
     console.error('Failed to fetch cafes: ', error);
@@ -28,7 +28,7 @@ export async function getAllCafes(query: string, currentPage: number) {
 export async function fetchCafePages(query: string) {
   noStore();
   try {
-    const count = await sql`SELECT COUNT(*) FROM csvCafes WHERE csvCafes.cafename ILIKE ${`%${query}%`}`;
+    const count = await sql`SELECT COUNT(*) FROM cafesDetailed WHERE cafesDetailed.cafename ILIKE ${`%${query}%`}`;
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {

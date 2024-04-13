@@ -18,7 +18,7 @@ export default async function CafeList({
                 // Also need to look into pagination so we don't get all the cafe's listed at once
                 <CafeCard
                     name={cafe.cafename}
-                    location='North Wollongong, NSW' //{cafe.location}
+                    location={cafe.formattedaddress} //{cafe.location}
                     slug={`/cafes/${cafe.cafeid}`}
                     imagePath='/images/cafe_street.jpg' //cafe.imagePath
                     key={index}

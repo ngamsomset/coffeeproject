@@ -5,57 +5,59 @@ const csv = require('csv-parser');
 
 async function seedCafes(client) {
     try {
-        await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+        await client.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
 
-        const csvCafes = await client.sql`
-            CREATE TABLE IF NOT EXISTS csvCafes (
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS cafesDetailed (
                 cafeid VARCHAR(255) PRIMARY KEY,
-                cafename VARCHAR(255)
+                cafename VARCHAR(255),
+                formattedAddress TEXT,
+                takeout BOOLEAN,
+                goodForChildren BOOLEAN,
+                goodForGroups BOOLEAN
             )
-        `;
-        console.log('csvCafes table created');
+        `);
+        console.log('cafesDetailed table created');
 
-        // Read the CSV file and insert data into the csvCafes table
-        const stream = fs.createReadStream('cafes.csv').pipe(csv());
+        const stream = fs.createReadStream('cafesReformat.csv').pipe(csv());
 
-        // Array to store all the rows to be inserted
         const rows = [];
-
-        // Set to store unique cafeids to check for duplicates
         const existingCafeIds = new Set();
 
-        // Iterate over each row in the CSV file
         for await (const row of stream) {
             console.log('Processing row:', row);
 
-            const trimmedId = row[' id']?.trim(); // Simplified trimming
-            const trimmedDisplayName = row[' displayName']?.trim(); // Simplified trimming
+            const trimmedId = row['id'];
+            const trimmedDisplayName = row['displayName'];
+            const formattedAddress = row['formattedAddress'];
+            const takeout = row['takeout'] === 'True';
+            const goodForChildren = row['goodForChildren'] === 'True';
+            const goodForGroups = row['goodForGroups'] === 'True';
+            const servesCoffee = row['servesCoffee'] === 'True';
 
-            if (trimmedId && trimmedDisplayName && !existingCafeIds.has(trimmedId)) {
-                existingCafeIds.add(trimmedId); // Add cafeid to set
-
-                rows.push([trimmedId, trimmedDisplayName]);
+            if (trimmedId && trimmedDisplayName && servesCoffee && !existingCafeIds.has(trimmedId)) {
+                existingCafeIds.add(trimmedId);
+                rows.push([trimmedId, trimmedDisplayName, formattedAddress, takeout, goodForChildren, goodForGroups]);
             } else {
-                console.log('Skipping row with empty or missing id or displayName or duplicate id:', row);
+                console.log('Skipping row:', row);
             }
         }
 
         if (rows.length > 0) {
+            const placeholders = rows.map((_, index) => `($${index * 6 + 1}, $${index * 6 + 2}, $${index * 6 + 3}, $${index * 6 + 4}, $${index * 6 + 5}, $${index * 6 + 6})`).join(',');
             const query = `
-                INSERT INTO csvCafes (cafeid, cafename)
-                VALUES ${rows.map((_, index) => `($${index * 2 + 1}, $${index * 2 + 2})`).join(',')}
+                INSERT INTO cafesDetailed (cafeid, cafename, formattedAddress, takeout, goodForChildren, goodForGroups)
+                VALUES ${placeholders}
             `;
-            
-            await client.query(query, rows.flat()); // Execute bulk insert
-            console.log('Data inserted into csvCafes table');
+
+            await client.query(query, rows.flat());
+            console.log('Data inserted into cafesDetailed table');
         }
 
-        // Close the client connection after all queries are completed
         await client.end();
         console.log('Client connection closed');
     } catch (error) {
         console.error('Error seeding cafes:', error);
-        // Close the client connection in case of error
         await client.end();
     }
 }

@@ -14,11 +14,9 @@ export default async function CafeList({
     return (
         <div className="md:grid grid-cols-3 gap-5 justify-between">
             {cafes.map((cafe, index) => (
-                // The hardcoded values doesn't have any equivalent fields in the seeded DB. This needs to be updated. 
-                // Also need to look into pagination so we don't get all the cafe's listed at once
                 <CafeCard
                     name={cafe.cafename}
-                    location='North Wollongong, NSW' //{cafe.location}
+                    location={cafe.formattedaddress}
                     slug={`/cafes/${cafe.cafeid}`}
                     imagePath='/images/cafe_street.jpg' //cafe.imagePath
                     key={index}
@@ -27,5 +25,3 @@ export default async function CafeList({
         </div>
     )
 }
-
-// export default CafeList

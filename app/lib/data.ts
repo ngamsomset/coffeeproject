@@ -18,7 +18,6 @@ export async function getAllCafes(query: string, currentPage: number) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
     const cafes = await sql`SELECT * FROM csvCafes WHERE csvCafes.cafename ILIKE ${`%${query}%`} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
-    console.log(cafes)
     return cafes.rows;
   } catch (error) {
     console.error('Failed to fetch cafes: ', error);

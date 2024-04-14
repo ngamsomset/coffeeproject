@@ -40,7 +40,7 @@ export async function fetchCafePages(query: string) {
 export async function getCafe(cafeId: number) {
   noStore();
   try {
-    const cafes = await sql`SELECT * FROM cafes WHERE cafes.cafeid = ${cafeId}`;
+    const cafes = await sql`SELECT * FROM cafesDetailed WHERE cafesDetailed.cafeid = ${cafeId}`;
     return cafes.rows[0];
   } catch (error) {
     console.error('Failed to fetch cafe: ', error);

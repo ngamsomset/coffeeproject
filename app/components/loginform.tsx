@@ -74,7 +74,7 @@ export default function LoginForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='text-white p-4 md:p-16 border-[1.5px] rounded-lg border-gray-300 flex flex-col items-center justify-center gap-y-6'
+        className='p-4 md:p-16 border-[1.5px] rounded-lg border-gray-300 flex flex-col items-center justify-center gap-y-6'
       >
         <FormField
           control={form.control}
@@ -117,6 +117,7 @@ export default function LoginForm() {
         >
           {form.formState.isSubmitting ? 'Opening....' : 'Open Sesame!'}
         </Button>
+        <div>New user? <a href='/signuptest'>Sign up</a></div>
       </form>
     </Form>
   );

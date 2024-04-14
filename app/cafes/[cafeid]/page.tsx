@@ -22,7 +22,7 @@ export default async function CafeDetails({
 
   return (
     <section className="my-16  mx-auto lg:max-w-screen-xl min-h-[60vh]  ">
-      <CafeDetail />
+      <CafeDetail cafeData={cafedata} />
     </section>
   );
 }

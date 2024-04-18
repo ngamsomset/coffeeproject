@@ -4,15 +4,14 @@ import LoginForm from '../components/loginform';
 
 export default async function LoginPage() {
   const session = await getServerSession();
-  console.log({ session });
-
+  
   if (session) {
     redirect('/');
   }
 
   return (
-    <section className='bg-black h-screen flex items-center justify-center'>
-      <div className='w-[600px]'>
+    <section className='h-[75vh] flex items-center justify-center'>
+      <div className='w-[600px] m-12 bg-[#EDE0D4]'>
         <LoginForm />
       </div>
     </section>

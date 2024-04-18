@@ -84,7 +84,7 @@ export default function LoginForm() {
               <FormLabel>Provide Email</FormLabel>
               <FormControl>
                 <Input
-                  className='text-black'
+                  className='text-white'
                   placeholder='Provide Email'
                   {...field}
                   type='text'
@@ -101,8 +101,8 @@ export default function LoginForm() {
               <FormLabel>Provide Password</FormLabel>
               <FormControl>
                 <Input
-                  className='text-black'
-                  placeholder='Hasło'
+                  className='text-white'
+                  placeholder='Provide Password'
                   {...field}
                   type='password'
                 />
@@ -112,12 +112,12 @@ export default function LoginForm() {
         />
         <Button
           type='submit'
-          className='hover:scale-110 hover:bg-cyan-700'
+          className='hover:scale-105 bg-[#36402D] hover:bg-[#36402D] text-white'
           disabled={form.formState.isSubmitting}
         >
           {form.formState.isSubmitting ? 'Opening....' : 'Open Sesame!'}
         </Button>
-        <div>New user? <a href='/signuptest'>Sign up</a></div>
+        <div>New user? <a href='/signuptest' className='text-[#36402D]'>Sign up</a></div>
       </form>
     </Form>
   );

@@ -5,6 +5,7 @@ import TopNav from "./components/TopNav";
 import BottomNav from "./components/BottomNav";
 import { SessionProvider, useSession } from "next-auth/react";
 import NextAuthProvider from "./context/NextAuthProvider";
+import { Toaster } from "./components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <TopNav />
           {children}
           <BottomNav />
+          <Toaster />
         </NextAuthProvider>
       </body>
     </html>

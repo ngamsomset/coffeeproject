@@ -29,7 +29,7 @@ const TopNav = () => {
             <Dropdown.Menu tabIndex={0} className="w-52 menu-sm mt-3 z-[1] bg-[#101010] text-white">
               <>
                 <Dropdown.Item href='/'>Home</Dropdown.Item>
-                <Dropdown.Item href='/cafes'>Café</Dropdown.Item>
+                <Dropdown.Item href='/cafes'>Cafés</Dropdown.Item>
                 <Dropdown.Item href='/account'>Account</Dropdown.Item>
                 <Dropdown.Item href='/about'>About</Dropdown.Item>
                 <Dropdown.Item href='/api/auth/signout'>Signout</Dropdown.Item>

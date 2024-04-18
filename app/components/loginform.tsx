@@ -84,7 +84,7 @@ export default function LoginForm() {
               <FormLabel>Provide Email</FormLabel>
               <FormControl>
                 <Input
-                  className='text-black'
+                  className='text-white'
                   placeholder='Provide Email'
                   {...field}
                   type='text'
@@ -101,8 +101,8 @@ export default function LoginForm() {
               <FormLabel>Provide Password</FormLabel>
               <FormControl>
                 <Input
-                  className='text-black'
-                  placeholder='Hasło'
+                  className='text-white'
+                  placeholder='Provide Password'
                   {...field}
                   type='password'
                 />

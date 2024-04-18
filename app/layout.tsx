@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import TopNav from "./components/TopNav";
 import BottomNav from "./components/BottomNav";
+import { SessionProvider, useSession } from "next-auth/react";
+import NextAuthProvider from "./context/NextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TopNav/>
-        {children}
-        <BottomNav/>
+        <NextAuthProvider>
+          <TopNav />
+          {children}
+          <BottomNav />
+        </NextAuthProvider>
       </body>
     </html>
   );

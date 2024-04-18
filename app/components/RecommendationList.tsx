@@ -22,7 +22,7 @@ const RecommendationList = async () => {
     // REAL USERID: Gets the id of the currently signed in user from the session
     const session = await getServerSession(authOptions);
     const userId = session?.user.id;
-        console.log(userId);
+    console.log(userId);
 
     //Endpoint connection to API service.
     if (apiUrl) {

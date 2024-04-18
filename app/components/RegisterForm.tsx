@@ -72,7 +72,7 @@ export default function FormPage() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='p-4 md:p-16 border-[1.5px] rounded-lg border-gray-300 flex flex-col gap-y-6'>
         <FormField
           control={form.control}
           name='username'
@@ -80,7 +80,7 @@ export default function FormPage() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder='Username' {...field} />
+                <Input placeholder='Username' {...field} className='text-white'/>
               </FormControl>
               <FormDescription>
                 This is your public display name.
@@ -95,7 +95,7 @@ export default function FormPage() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder='Password' {...field} type='password' />
+                <Input placeholder='Password' {...field} type='password' className='text-white' />
               </FormControl>
             </FormItem>
           )}
@@ -107,7 +107,7 @@ export default function FormPage() {
             <FormItem>
               <FormLabel>Full Name</FormLabel>
               <FormControl>
-                <Input placeholder='Ex. John Doe' {...field} />
+                <Input placeholder='Ex. John Doe' {...field} className='text-white' />
               </FormControl>
             </FormItem>
           )}
@@ -119,13 +119,13 @@ export default function FormPage() {
             <FormItem>
               <FormLabel>Birthday</FormLabel>
               <FormControl>
-                <Input placeholder='' {...field} type='date' />
+                <Input placeholder='' {...field} type='date' className='text-white'/>
               </FormControl>
             </FormItem>
           )}
         />
 
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' className='hover:scale-105 bg-[#36402D] hover:bg-[#36402D] text-white w-fit'>Submit</Button>
       </form>
     </Form>
   );

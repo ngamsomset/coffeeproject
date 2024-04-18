@@ -19,24 +19,24 @@ const TopNav = () => {
             </Menu>
           </div>
         )}
-        <Dropdown>
-          <Button tag="label" color="ghost" tabIndex={0} className="lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h8m-8 6h16" />
-            </svg>
-          </Button>
-          <Dropdown.Menu tabIndex={0} className="w-52 menu-sm mt-3 z-[1] bg-[#101010] text-white">
-            <Dropdown.Item href='/'>Home</Dropdown.Item>
-            <Dropdown.Item href='/cafes'>Café</Dropdown.Item>
-            {status === "authenticated" && (
+        {status === "authenticated" && (
+          <Dropdown>
+            <Button tag="label" color="ghost" tabIndex={0} className="lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+            </Button>
+            <Dropdown.Menu tabIndex={0} className="w-52 menu-sm mt-3 z-[1] bg-[#101010] text-white">
               <>
+                <Dropdown.Item href='/'>Home</Dropdown.Item>
+                <Dropdown.Item href='/cafes'>Café</Dropdown.Item>
                 <Dropdown.Item href='/account'>Account</Dropdown.Item>
                 <Dropdown.Item href='/about'>About</Dropdown.Item>
                 <Dropdown.Item href='/api/auth/signout'>Signout</Dropdown.Item>
               </>
-            )}
-          </Dropdown.Menu>
-        </Dropdown>
+            </Dropdown.Menu>
+          </Dropdown>
+        )}
       </Navbar.Start>
       <Navbar.Center className="hidden lg:flex">
         <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold">

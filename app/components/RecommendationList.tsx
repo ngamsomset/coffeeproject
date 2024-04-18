@@ -1,6 +1,6 @@
 import React from 'react'
 import CafeCard from './CafeCard';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '../lib/auth';
 import { getServerSession } from 'next-auth/next';
 const apiUrl = process.env.NEXT_ML_API_URL;
 

@@ -12,7 +12,7 @@ export default async function LoginPage() {
 
   return (
     <section className='h-[75vh] flex items-center justify-center'>
-      <div className='w-[600px] p-12'>
+      <div className='w-[600px] m-12 bg-[#EDE0D4]'>
         <LoginForm />
       </div>
     </section>

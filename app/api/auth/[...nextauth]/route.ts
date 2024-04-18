@@ -6,6 +6,7 @@ import { compare } from 'bcrypt';
 const handler = NextAuth({
   session: {
     strategy: 'jwt',
+    maxAge: 1800 // Sets token expiry to 30 minutes
   },
 
   pages: {

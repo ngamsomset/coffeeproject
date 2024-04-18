@@ -1,5 +1,3 @@
-/** @format */
-
 'use client';
 
 import {
@@ -39,7 +37,6 @@ export function Toaster() {
                   {action}
                 </div>
                 <ToastClose />
-                {/* <TimerBar max={duration || TOAST_REMOVE_DELAY} /> */}
               </div>
             </Toast>
           );

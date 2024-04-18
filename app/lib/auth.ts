@@ -7,51 +7,51 @@ export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
         maxAge: 1800 // Sets token expiry to 30 minutes
-      },
-    
-      pages: {
+    },
+
+    pages: {
         signIn: '/logintest',
-      },
-    
-      providers: [
+    },
+
+    providers: [
         CredentialsProvider({
-          // The name to display on the sign in form (e.g. 'Sign in with...')
-          name: 'Credentials',
-          credentials: {
-            email: {},
-            password: {},
-          },
-          async authorize(credentials, req) {
-            const response = await sql`
+            // The name to display on the sign in form (e.g. 'Sign in with...')
+            name: 'Credentials',
+            credentials: {
+                email: {},
+                password: {},
+            },
+            async authorize(credentials, req) {
+                const response = await sql`
               SELECT * FROM testinguser WHERE email=${credentials?.email}
             `;
-            const user = response.rows[0];
-    
-            const passwordCorrect = await compare(
-              credentials?.password || '',
-              user.password,
-            );
-    
-            if (passwordCorrect) {
-              return {
-                id: user.id,
-                email: user.email,
-              };
-            }
-    
-            console.log('credentials', credentials);
-            return null;
-          },
+                const user = response.rows[0];
+
+                const passwordCorrect = await compare(
+                    credentials?.password || '',
+                    user.password,
+                );
+
+                if (passwordCorrect) {
+                    return {
+                        id: user.id,
+                        email: user.email,
+                    };
+                }
+
+                console.log('credentials', credentials);
+                return null;
+            },
         }),
-      ],
-      callbacks: {
+    ],
+    callbacks: {
         session: ({ session, token }) => ({
-          ...session,
-          ...token,
-          user: {
-            id: token.sub,
-            email: token.email
-          },
+            ...session,
+            ...token,
+            user: {
+                id: token.sub,
+                email: token.email
+            },
         }),
-      },
+    },
 };

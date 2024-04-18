@@ -2,8 +2,9 @@ import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { sql } from '@vercel/postgres';
 import { compare } from 'bcrypt';
+import { NextAuthOptions } from 'next-auth';
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
     maxAge: 1800 // Sets token expiry to 30 minutes
@@ -44,6 +45,22 @@ const handler = NextAuth({
       },
     }),
   ],
-});
+  callbacks: {
+    async jwt({ user, token }) {
+      if (user) {  
+        token.user = { ...user }
+      }
+      return token
+    },
+    async session({ session, token }) {
+      if (token?.user) {
+        session.user = token.user;
+      }
+      return session
+    },
+  },
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

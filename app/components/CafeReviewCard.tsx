@@ -11,8 +11,8 @@ const CafeReviewCard = () => {
         <div className="flex review-body mb-5">
             <div>photo</div>
             <IoHeartCircleSharp size={30} />
-            <span className=" card md:card-side bg-[#36402D] shadow-xl w-[570px] h-[100px] ml-8 mx-auto px-6 py-4 text-white">
-                <div className="grid grid-cols-3 gap-x-12 gap-y-3">
+            <span className=" card md:card-side bg-[#36402D] shadow-xl w-[570px] h-fit ml-8 mx-auto px-6 py-4 text-white">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 lg:gap-x-12 gap-y-1 lg:gap-y-3">
                     <div className="flex">
                         <MdCoffee size={20} />
                         <p className="ml-3">Latte</p>

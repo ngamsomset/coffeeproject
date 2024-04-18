@@ -48,8 +48,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, token }) => ({
       ...session,
+      ...token,
       user: {
-        ...session.user,
         id: token.sub,
         email: token.email
       },

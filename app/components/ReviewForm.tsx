@@ -12,6 +12,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
     });
 
     const [submitted, setSubmitted] = useState(false); // State to track form submission
+    const [loading, setLoading] = useState(false); // State to track loading
 
     const isFormValid = () => {
         return (
@@ -33,6 +34,8 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
             return;
         }
 
+        setLoading(true); // Set loading state to true
+
         try {
             const response = await fetch('.././api/review', {
                 method: 'POST',
@@ -50,6 +53,8 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
             }
         } catch (error) {
             console.error('Error submitting review:', error);
+        } finally {
+            setLoading(false); // Set loading state to false after submission attempt
         }
     };
 
@@ -341,8 +346,9 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                         <button
                             className="px-1 py-1 w-fit rounded-xl bg-[#36402D] text-white hover:scale-105 duration-500"
                             type="submit"
+                            disabled={loading} // Disable the button while loading
                         >
-                            <span className='block bg-[#36402D] rounded-full px-5 py-2'>Submit</span>
+                            {loading ? <span className="block bg-[#36402D] rounded-full px-5 py-2 disabled">Submitting...</span> : <span className='block bg-[#36402D] rounded-full px-5 py-2'>Submit</span>}
                         </button>
                     </form>
                 </div>

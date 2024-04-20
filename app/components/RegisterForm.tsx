@@ -30,6 +30,12 @@ const FormSchema = z.object({
   birthday: z.string().min(6, {
     message: 'Password must be at least 6 characters.',
   }),
+  gender: z.string().min(1, {
+    message: 'Please select any gender',
+  }),
+  nationality: z.string().min(6, {
+    message: 'Please fill the nationality',
+  }),
 });
 
 type FormData = z.infer<typeof FormSchema>;
@@ -42,13 +48,15 @@ export default function FormPage() {
       password: '',
       fullname: '',
       birthday: '',
+      gender: '',
+      nationality: '',
     },
   });
 
   const onSubmit = async (data: FormData) => {
     console.log('Submitting form', data);
 
-    const { username: email, password, fullname, birthday } = data;
+    const { username: email, password, fullname, birthday, gender, nationality } = data;
 
     try {
       const response = await fetch('/api/auth/register', {
@@ -56,7 +64,7 @@ export default function FormPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, fullname, birthday }),
+        body: JSON.stringify({ email, password, fullname, birthday, gender, nationality }),
       });
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -72,19 +80,16 @@ export default function FormPage() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='p-4 md:p-16 border-[1.5px] rounded-lg border-gray-300 flex flex-col gap-y-6'>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name='username'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder='Username' {...field} className='text-white'/>
+                <Input placeholder='example@example.com' {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
             </FormItem>
           )}
         />
@@ -95,7 +100,7 @@ export default function FormPage() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder='Password' {...field} type='password' className='text-white' />
+                <Input placeholder='Password' {...field} type='password' />
               </FormControl>
             </FormItem>
           )}
@@ -107,7 +112,7 @@ export default function FormPage() {
             <FormItem>
               <FormLabel>Full Name</FormLabel>
               <FormControl>
-                <Input placeholder='Ex. John Doe' {...field} className='text-white' />
+                <Input placeholder='Ex. John Doe' {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -119,13 +124,62 @@ export default function FormPage() {
             <FormItem>
               <FormLabel>Birthday</FormLabel>
               <FormControl>
-                <Input placeholder='' {...field} type='date' className='text-white'/>
+                <Input placeholder='' {...field} type='date' />
               </FormControl>
             </FormItem>
           )}
         />
+                <FormField
+  control={form.control}
+  name="gender"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>Gender</FormLabel>
+      <FormControl>
+        <><label>
+          <Input
+            {...field}
+            type="radio"
+            value="male"
+          />
+          Male
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="female"
+          />
+          Female
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="prefer_not_to_say"
+          />
+          Prefer not to say
+        </label></>
+      </FormControl>
+    </FormItem>
+  )}
+/>
 
-        <Button type='submit' className='hover:scale-105 bg-[#36402D] hover:bg-[#36402D] text-white w-fit'>Submit</Button>
+                <FormField
+          control={form.control}
+          name='nationality'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nationality</FormLabel>
+              <FormControl>
+                <Input placeholder='Ex. Australian' {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        
+
+        <Button type='submit'>Submit</Button>
       </form>
     </Form>
   );

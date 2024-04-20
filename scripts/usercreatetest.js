@@ -22,10 +22,9 @@ async function alterTable(client) {
       // Add the fullname column if it doesn't exist
       await client.query(`
         ALTER TABLE IF EXISTS testinguser
-        ADD COLUMN IF NOT EXISTS fullname VARCHAR(255) NOT NULL DEFAULT '';
-  
-        ALTER TABLE IF EXISTS testinguser
-        ADD COLUMN IF NOT EXISTS birthdate VARCHAR(255);
+        ADD COLUMN IF NOT EXISTS nationality VARCHAR(255) NOT NULL DEFAULT '',
+        ADD COLUMN IF NOT EXISTS gender VARCHAR(255) NOT NULL DEFAULT '',
+        ADD COLUMN IF NOT EXISTS birthdate VARCHAR(255) NOT NULL DEFAULT '';
       `);
       console.log('Table testinguser altered successfully');
     } catch (error) {

@@ -2,6 +2,7 @@ import React from 'react'
 import CafeCard from './CafeCard';
 import { authOptions } from '../lib/auth';
 import { getServerSession } from 'next-auth/next';
+import { getReviews } from '../lib/data';
 const apiUrl = process.env.NEXT_ML_API_URL;
 
 interface CafePrediction {
@@ -15,6 +16,8 @@ interface CafeSuggestions {
 
 const RecommendationList = async () => {
     let cafeSuggestions: CafeSuggestions = { predictions: [] };
+    // const reviews = await getReviews();
+    // console.log(reviews)
 
     // FAKE USERID: This is only added for test reasons. Will be updated to retrieve current user once next auth is fully running.
     const currentUserId = 1;

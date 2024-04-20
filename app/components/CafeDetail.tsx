@@ -103,7 +103,7 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
             </div>
           </div>
         </div>
-        <ReviewForm />
+        <ReviewForm cafeId={cafeData.cafeid} userId={7}/>
       </div>
     </section>
   );

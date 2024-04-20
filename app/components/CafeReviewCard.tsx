@@ -6,11 +6,12 @@ import { FaDollarSign } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
 import { FaCommentDots } from "react-icons/fa";
 
-const CafeReviewCard = ({ reviewData }: { reviewData: any; }) => {
+const CafeReviewCard = ({ reviewData, showCafeName }: { reviewData: any; showCafeName: boolean }) => {
     return (
         <div className="flex mb-5">
             <span className="card bg-[#36402D] shadow-xl w-[570px] h-fit px-6 py-4 text-white justify-start">
-            <div className="flex my-4">
+                {showCafeName && <h3 className='text-xl font-semibold'>Test</h3>}
+                <div className="flex my-4">
                     <FaCommentDots size={20} />
                     <p className="ml-3 italic">"{reviewData.comments}"</p>
                 </div>
@@ -36,7 +37,7 @@ const CafeReviewCard = ({ reviewData }: { reviewData: any; }) => {
                         <p className="ml-3">{reviewData.price}</p>
                     </div>
                 </div>
-                
+
                 <div className="mt-3 text-right">
                     <p className='text-xs text-white/50'>- {reviewData.email}</p>
                 </div>

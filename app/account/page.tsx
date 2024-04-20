@@ -34,11 +34,11 @@ const page = () => {
           <h2 className='text-2xl mb-6'>Your latest café visits</h2>
         </div>
         <div className='grid grid-cols-2 gap-4'>
-          <div className='col-span-1'>
-            <CafeReviewCard reviewData={userReviews} />
+          <div className='col-span-2 md:col-span-1'>
+            <CafeReviewCard reviewData={userReviews} showCafeName={true}/>
           </div>
-          <div className='col-span-1'>
-            <CafeReviewCard reviewData={userReviews} />
+          <div className='col-span-2 md:col-span-1'>
+            <CafeReviewCard reviewData={userReviews} showCafeName={true}/>
           </div>
         </div>
       </div>

@@ -76,7 +76,7 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
             <p className="italic">No reviews yet</p>
           ) : (
             latestReviews.map((review, index) => (
-              <CafeReviewCard key={index} reviewData={review} />
+              <CafeReviewCard key={index} reviewData={review} showCafeName={false}/>
             ))
           )}
         </div>

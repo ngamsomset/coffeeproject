@@ -62,7 +62,20 @@ export async function getLatestReviews() {
 export async function getLatestCafeReviews(cafeId: number) {
   noStore();
   try {
-    const cafes = await sql`SELECT cr.starRating, cr.coffeeType, cr.comments FROM cafeReviews cr JOIN cafesDetailed cd ON cr.cafeId = cd.cafeId WHERE cr.cafeId = ${cafeId} ORDER BY cr.reviewId DESC LIMIT 3;`;
+    const cafes = await sql`SELECT 
+                              tu.email,
+                              cr.starRating, 
+                              cr.coffeeType, 
+                              cr.atmosphere, 
+                              cr.price, 
+                              cr.customerService, 
+                              cr.comments 
+                            FROM 
+                              cafeReviews cr 
+                            JOIN cafesDetailed cd ON cr.cafeId = cd.cafeId 
+                            JOIN testinguser tu ON cr.userId = tu.id
+                            WHERE cr.cafeId = ${cafeId} 
+                            ORDER BY cr.reviewId DESC LIMIT 3;`;
     return cafes.rows;
   } catch (error) {
     console.error('Failed to fetch cafe: ', error);

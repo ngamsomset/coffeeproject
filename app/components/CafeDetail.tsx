@@ -15,7 +15,6 @@ interface CafeDetailProps {
 
 const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
   const latestReviews = await getLatestCafeReviews(cafeData.cafeid);
-  // console.log(latestReviews);
 
   return (
     <section className="my-16 px-12 lg:px-0 lg:max-w-screen-lg mx-auto">
@@ -73,12 +72,11 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
           <div className="flex align-middle">
             <p className="text-2xl text-[#582F0E] py-8 ">Latest Reviews</p>
           </div>
-          {/* TODO: Send review details as parameters to component */}
           {latestReviews.length === 0 ? (
             <p className="italic">No reviews yet</p>
           ) : (
             latestReviews.map((review, index) => (
-              <CafeReviewCard key={index} />
+              <CafeReviewCard key={index} reviewData={review} />
             ))
           )}
         </div>

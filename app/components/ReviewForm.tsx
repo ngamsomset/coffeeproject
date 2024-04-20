@@ -1,22 +1,135 @@
-import React from 'react'
+"use client"
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 
-const ReviewForm = () => {
+const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
+    const [formData, setFormData] = useState({
+        starRating: '',
+        coffeeType: '',
+        customerService: '',
+        price: '',
+        atmosphere: '',
+        comments: '',
+    });
+
+    const isFormValid = () => {
+        return (
+            formData.starRating &&
+            formData.coffeeType &&
+            formData.customerService &&
+            formData.price &&
+            formData.atmosphere &&
+            formData.comments
+        );
+    };
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        // Check if all required fields are filled out
+        if (!isFormValid()) {
+            console.error('Please fill out all required fields');
+            return;
+        }
+
+        try {
+            const response = await fetch('.././api/review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ reviewData: formData, cafeId, userId }),
+            });
+
+            if (response.ok) {
+                console.log('Review submitted successfully');
+                // Reset form fields if needed
+            } else {
+                console.error('Failed to submit review');
+            }
+        } catch (error) {
+            console.error('Error submitting review:', error);
+        }
+    };
+
+    // Handle form field changes
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
     return (
         <div className="col-span-4">
             <div className="text-2xl text-[#582F0E] mb-8">Leave a review</div>
             <div className="bg-[#582F0E] w-full h-[1000x] rounded-xl text-[#EDE0D4] p-10">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="mx-2 md:mx-4">
-                        <label className=" text-2xl" htmlFor="reviewQ1">
-                            1. What did you order?
+                    <label className="text-2xl" htmlFor="starRating">
+                            1. How would you rate the overall experience?
                         </label>
                         <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
                             <label className="items-center">
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ1"
-                                    value="latte"
+                                    name="starRating"
+                                    value="1"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">1 - Poor</span>
+                            </label>
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="starRating"
+                                    value="2"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">2 - Fair</span>
+                            </label>
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="starRating"
+                                    value="3"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">3 - Good</span>
+                            </label>
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="starRating"
+                                    value="4"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">4 - Very good</span>
+                            </label>
+
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="starRating"
+                                    value="5"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">5 - Excellent</span>
+                            </label>
+                        </div>
+
+                        <label className=" text-2xl" htmlFor="coffeeType">
+                            2. What did you order?
+                        </label>
+                        <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="coffeeType"
+                                    value="Latte"
+                                    onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Latte</span>
                             </label>
@@ -24,8 +137,9 @@ const ReviewForm = () => {
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ1"
-                                    value="flatwhite"
+                                    name="coffeeType"
+                                    value="Flat white"
+                                    onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Flat white</span>
                             </label>
@@ -33,17 +147,19 @@ const ReviewForm = () => {
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ1"
-                                    value="longblack"
+                                    name="coffeeType"
+                                    value="Long black"
+                                    onChange={handleChange}
                                 ></input>
-                                <span className="ml-2">Long Black</span>
+                                <span className="ml-2">Long black</span>
                             </label>
                             <label className=" items-center">
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ1"
+                                    name="coffeeType"
                                     value="Cappucino"
+                                    onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Cappucino</span>
                             </label>
@@ -52,65 +168,16 @@ const ReviewForm = () => {
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ1"
-                                    value="other"
+                                    name="coffeeType"
+                                    value="Other"
+                                    onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Other</span>
                             </label>
                         </div>
 
-                        <label className="text-2xl" htmlFor="reviewQ2">
-                            2. How was the overall experience?
-                        </label>
-                        <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
-                            <label className="items-center">
-                                <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name="reviewQ2"
-                                    value="delicious"
-                                ></input>
-                                <span className="ml-2">Delicious</span>
-                            </label>
-                            <label className="items-center">
-                                <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name="reviewQ2"
-                                    value="prettygood"
-                                ></input>
-                                <span className="ml-2">Pretty good</span>
-                            </label>
-                            <label className="items-center">
-                                <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name="reviewQ2"
-                                    value="ok"
-                                ></input>
-                                <span className="ml-2">Ok</span>
-                            </label>
-                            <label className="items-center">
-                                <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name="reviewQ2"
-                                    value="notbad"
-                                ></input>
-                                <span className="ml-2">Not bad</span>
-                            </label>
 
-                            <label className="items-center">
-                                <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name="reviewQ2"
-                                    value="tasteless"
-                                ></input>
-                                <span className="ml-2">Tasteless</span>
-                            </label>
-                        </div>
-                        <label className="text-2xl mt-6" htmlFor="reviewQ3">
+                        <label className="text-2xl mt-6" htmlFor="customerService">
                             3. How was the customer service?
                         </label>
                         <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
@@ -118,8 +185,9 @@ const ReviewForm = () => {
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ3"
-                                    value="verygood"
+                                    name="customerService"
+                                    value="Very good"
+                                    onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Very good</span>
                             </label>
@@ -127,8 +195,9 @@ const ReviewForm = () => {
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ3"
-                                    value="good"
+                                    name="customerService"
+                                    value="Good"
+                                    onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Good</span>
                             </label>
@@ -136,13 +205,14 @@ const ReviewForm = () => {
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ3"
-                                    value="bad"
+                                    name="customerService"
+                                    value="Bad"
+                                    onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Bad</span>
                             </label>
                         </div>
-                        <label className="text-2xl mt-6" htmlFor="reviewQ4">
+                        <label className="text-2xl mt-6" htmlFor="price">
                             4. What do you think about the price?
                         </label>
                         <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
@@ -150,116 +220,124 @@ const ReviewForm = () => {
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ4"
-                                    value="itscheap"
+                                    name="price"
+                                    value="Very cheap"
+                                    onChange={handleChange}
                                 ></input>
-                                <span className="ml-2">It&#39;s cheap</span>
+                                <span className="ml-2">Very cheap</span>
                             </label>
                             <label className="items-center">
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ4"
-                                    value="worththeprice"
+                                    name="price"
+                                    value="Cheap"
+                                    onChange={handleChange}
                                 ></input>
-                                <span className="ml-2">It&#39;s worth the price</span>
+                                <span className="ml-2">Cheap</span>
                             </label>
                             <label className="items-center">
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ4"
-                                    value="toopricey"
+                                    name="price"
+                                    value="Average"
+                                    onChange={handleChange}
                                 ></input>
-                                <span className="ml-2">It&#39;s too pricey</span>
+                                <span className="ml-2">Average</span>
+                            </label>
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="price"
+                                    value="Expensive"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">Expensive</span>
+                            </label>
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="price"
+                                    value="Very expensive"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">Very expensive</span>
                             </label>
                         </div>
-                        <label className="text-2xl mt-6" htmlFor="reviewQ5">
-                            5. What do you think about the atmosphere?
+                        <label className="text-2xl mt-6" htmlFor="atmosphere">
+                            5. How would you describe the atmosphere?
                         </label>
                         <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
                             <label className="items-center">
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ5"
-                                    value="goodvibe"
+                                    name="atmosphere"
+                                    value="Cozy"
+                                    onChange={handleChange}
                                 ></input>
-                                <span className="ml-2">Good vibe!</span>
+                                <span className="ml-2">Cozy</span>
                             </label>
                             <label className="items-center">
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ5"
-                                    value="itsokay"
+                                    name="atmosphere"
+                                    value="Vibrant"
+                                    onChange={handleChange}
                                 ></input>
-                                <span className="ml-2"> It&#39;s okay</span>
+                                <span className="ml-2">Vibrant</span>
                             </label>
                             <label className="items-center">
                                 <input
                                     type="radio"
                                     className="form-radio"
-                                    name="reviewQ5"
-                                    value="idontlikeit"
+                                    name="atmosphere"
+                                    value="Zen"
+                                    onChange={handleChange}
                                 ></input>
-                                <span className="ml-2">I don&#39;t like it</span>
+                                <span className="ml-2">Zen</span>
+                            </label>
+                            <label className="items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio"
+                                    name="atmosphere"
+                                    value="Eclectic"
+                                    onChange={handleChange}
+                                ></input>
+                                <span className="ml-2">Eclectic</span>
                             </label>
                         </div>
 
-                        <label className="text-2xl mt-6" htmlFor="reviewQ6">
-                            6. Would you recommend this cafe?
+                        <label className="text-2xl mt-6" htmlFor="comments">
+                            7. Any additional comments?
                         </label>
-                        <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
-                            <label className=" items-center">
-                                <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name="reviewQ6"
-                                    value="yes"
-                                ></input>
-                                <span className="ml-2">Definitely yes</span>
-                            </label>
-                            <label className=" items-center">
-                                <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name="reviewQ6"
-                                    value="no"
-                                ></input>
-                                <span className="ml-2">Probably no</span>
-                            </label>
-                        </div>
-                        <label className="text-2xl mt-6" htmlFor="reviewQ7">
-                            7. Any comment to others?
-                        </label>
-                        <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
+                        <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap text-black">
                             <textarea
-                                id="comment"
-                                name="comment"
+                                id="comments"
+                                name="comments"
                                 rows={4}
-                                className="block w-[1039px] bg-white rounded-md  py-1.5 text-gray-900 shadow-sm ring-1 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                                onChange={handleChange}
+                                className="block w-[1039px] bg-white rounded-md  p-2 text-[#36402D] shadow-sm ring-1 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                             ></textarea>
                         </div>
+                        <input type="hidden" name="cafeId" value={cafeId} />
+                        <input type="hidden" name="userId" value={userId} />
                     </div>
+                    <button
+                        className="px-1 py-1 w-fit rounded-xl bg-[#36402D] text-white hover:scale-105 duration-500"
+                        type="submit"
+                    >
+                        <span className='block bg-[#36402D] rounded-full px-5 py-2'>Submit</span>
+                    </button>
                 </form>
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <button
-                    className="bg-button w-[174px] text-2xl text-[#EDE0D4] uppercase hover:bg-blue-700 font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit"
-                >
-                    Submit
-                </button>
-            </div>
         </div>
-    )
-}
+    );
+};
 
-export default ReviewForm
+export default ReviewForm;

@@ -9,9 +9,10 @@ import CafeReviewCard from "./CafeReviewCard";
 
 interface CafeDetailProps {
   cafeData: any;
+  userId: any;
 }
 
-const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
+const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
   return (
     <section className="my-16 px-12 lg:px-0 lg:max-w-screen-lg mx-auto">
       <h1 className="text-[36px] pt-5 text-[#582F0E] self-start">{cafeData.cafename}</h1>
@@ -36,9 +37,9 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
             <p className="text-2xl text-[#582F0E] my-4">Cafe Details</p>
           </div>
           <div className="flex-col space-y-4 text-[#36402D] text-[16px]">
-          <div className="flex flex-wrap space-x-2 items-center">
-                  <FaMapPin className="inline-block mr-1" />
-                  <p className="font-semibold">{cafeData.formattedaddress}</p>
+            <div className="flex flex-wrap space-x-2 items-center">
+              <FaMapPin className="inline-block mr-1" />
+              <p className="font-semibold">{cafeData.formattedaddress}</p>
             </div>
             <div className="flex flex-wrap space-x-2 items-center">
               {cafeData.goodforgroups && (
@@ -103,7 +104,7 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
             </div>
           </div>
         </div>
-        <ReviewForm />
+        <ReviewForm cafeId={cafeData.cafeid} userId={userId} />
       </div>
     </section>
   );

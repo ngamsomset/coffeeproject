@@ -6,6 +6,7 @@ import { FaMapPin, FaUserGroup, FaChildReaching } from "react-icons/fa6";
 import { BiCoffeeTogo } from "react-icons/bi";
 import ReviewForm from "./ReviewForm";
 import CafeReviewCard from "./CafeReviewCard";
+import { getLatestCafeReviews } from "../lib/data";
 
 interface CafeDetailProps {
   cafeData: any;
@@ -13,6 +14,9 @@ interface CafeDetailProps {
 }
 
 const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
+  const latestReviews = await getLatestCafeReviews(cafeData.cafeid);
+  // console.log(latestReviews);
+
   return (
     <section className="my-16 px-12 lg:px-0 lg:max-w-screen-lg mx-auto">
       <h1 className="text-[36px] pt-5 text-[#582F0E] self-start">{cafeData.cafename}</h1>
@@ -69,8 +73,14 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
           <div className="flex align-middle">
             <p className="text-2xl text-[#582F0E] py-8 ">Latest Reviews</p>
           </div>
-          {/* Need to add logic here once the reviews are imported */}
-          <CafeReviewCard />
+          {/* TODO: Send review details as parameters to component */}
+          {latestReviews.length === 0 ? (
+            <p className="italic">No reviews yet</p>
+          ) : (
+            latestReviews.map((review, index) => (
+              <CafeReviewCard key={index} />
+            ))
+          )}
         </div>
         <div className="col-span-4 lg:col-span-2">
           {/* This hardcoded value needs to be changed in the future */}

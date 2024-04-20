@@ -58,3 +58,14 @@ export async function getLatestReviews() {
     throw new Error('Failed to fetch cafe.');
   }
 }
+
+export async function getLatestCafeReviews(cafeId: number) {
+  noStore();
+  try {
+    const cafes = await sql`SELECT cr.starRating, cr.coffeeType, cr.comments FROM cafeReviews cr JOIN cafesDetailed cd ON cr.cafeId = cd.cafeId WHERE cr.cafeId = ${cafeId} ORDER BY cr.reviewId DESC LIMIT 3;`;
+    return cafes.rows;
+  } catch (error) {
+    console.error('Failed to fetch cafe: ', error);
+    throw new Error('Failed to fetch cafe.');
+  }
+}

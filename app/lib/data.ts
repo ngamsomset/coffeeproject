@@ -69,13 +69,39 @@ export async function getLatestCafeReviews(cafeId: number) {
                               cr.atmosphere, 
                               cr.price, 
                               cr.customerService, 
-                              cr.comments 
+                              cr.comments,
+                              cd.cafeName
                             FROM 
                               cafeReviews cr 
                             JOIN cafesDetailed cd ON cr.cafeId = cd.cafeId 
                             JOIN testinguser tu ON cr.userId = tu.id
                             WHERE cr.cafeId = ${cafeId} 
                             ORDER BY cr.reviewId DESC LIMIT 3;`;
+    return reviews.rows;
+  } catch (error) {
+    console.error('Failed to fetch reviews: ', error);
+    throw new Error('Failed to fetch reviews.');
+  }
+}
+
+export async function getUserReviews(userId: any) {
+  noStore();
+  try {
+    const reviews = await sql`SELECT 
+                              tu.email,
+                              cr.starRating, 
+                              cr.coffeeType, 
+                              cr.atmosphere, 
+                              cr.price, 
+                              cr.customerService, 
+                              cr.comments,
+                              cd.cafename
+                            FROM 
+                              cafeReviews cr 
+                            JOIN cafesDetailed cd ON cr.cafeId = cd.cafeId 
+                            JOIN testinguser tu ON cr.userId = tu.id
+                            WHERE tu.id = ${userId} 
+                            ORDER BY cr.reviewId DESC;`;
     return reviews.rows;
   } catch (error) {
     console.error('Failed to fetch reviews: ', error);

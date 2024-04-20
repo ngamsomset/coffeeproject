@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { CiCoffeeBean } from "react-icons/ci";
 import { TiStarFullOutline } from "react-icons/ti";
+import { FaMapPin, FaUserGroup, FaChildReaching } from "react-icons/fa6";
+import { BiCoffeeTogo } from "react-icons/bi";
 import ReviewForm from "./ReviewForm";
 import CafeReviewCard from "./CafeReviewCard";
 
@@ -18,6 +20,7 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
           <div className="flex flex-wrap">
             <span className="self-center flex text-xl text-[#36402D] w-full mb-2">
               <p className="mt-2">Rating</p>
+              {/* Rating here will be calculated from the database */}
               <TiStarFullOutline
                 size={45}
                 className="fill-[#C2ECCD] border-1 border-black"
@@ -33,17 +36,33 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
             <p className="text-2xl text-[#582F0E] my-4">Cafe Details</p>
           </div>
           <div className="flex-col space-y-4 text-[#36402D] text-[16px]">
-            <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Location:</p><p>{cafeData.formattedaddress}</p>
+          <div className="flex flex-wrap space-x-2 items-center">
+                  <FaMapPin className="inline-block mr-1" />
+                  <p className="font-semibold">{cafeData.formattedaddress}</p>
             </div>
-            <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Opening hours:</p><p>7.00 am - 3.30 pm</p>
+            <div className="flex flex-wrap space-x-2 items-center">
+              {cafeData.goodforgroups && (
+                <>
+                  <FaUserGroup className="inline-block mr-1" />
+                  <p className="font-semibold">Good for groups</p>
+                </>
+              )}
             </div>
-            <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Telephone:</p><p>02 1234 5678</p>
+            <div className="flex flex-wrap space-x-2 items-center">
+              {cafeData.goodforchildren && (
+                <>
+                  <FaChildReaching className="inline-block mr-1" />
+                  <p className="font-semibold">Good for children</p>
+                </>
+              )}
             </div>
-            <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Website:</p><p>website.com.au</p>
+            <div className="flex flex-wrap space-x-2 items-center">
+              {cafeData.takeout && (
+                <>
+                  <BiCoffeeTogo className="inline-block mr-1" />
+                  <p className="font-semibold">Offers takeout</p>
+                </>
+              )}
             </div>
           </div>
           <div className="flex align-middle">

@@ -10,7 +10,7 @@ const CafeReviewCard = ({ reviewData, showCafeName }: { reviewData: any; showCaf
     return (
         <div className="flex mb-5">
             <span className="card bg-[#36402D] shadow-xl w-[570px] h-fit px-6 py-4 text-white justify-start">
-                {showCafeName && <h3 className='text-xl font-semibold'>Test</h3>}
+                {showCafeName && reviewData.cafename && <h3 className='text-xl font-semibold'>{reviewData.cafename}</h3>}
                 <div className="flex my-4">
                     <FaCommentDots size={20} />
                     <p className="ml-3 italic">"{reviewData.comments}"</p>

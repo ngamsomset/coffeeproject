@@ -2,7 +2,7 @@ import React from 'react'
 import { CiCoffeeBean } from "react-icons/ci";
 import { MdOutlineCoffeeMaker } from "react-icons/md";
 
-const PreferenceTile = () => {
+const PreferenceTile = ({itemCount} : {itemCount:number}) => {
     return (
         <>
             <div className='bg-[#E6CCB2] p-8 rounded-xl border shadow-xl'>
@@ -25,7 +25,7 @@ const PreferenceTile = () => {
 
             </div>
             <div className='p-8 rounded-xl border  mt-6 bg-[#E6CCB2]'>
-                <p className=''>Cafés visited: 12/304</p>
+                <p className=''>Cafés visited: {itemCount} / 304</p>
             </div>
         </>
 

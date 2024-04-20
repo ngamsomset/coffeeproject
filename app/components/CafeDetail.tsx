@@ -20,6 +20,7 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
           <div className="flex flex-wrap">
             <span className="self-center flex text-xl text-[#36402D] w-full mb-2">
               <p className="mt-2">Rating</p>
+              {/* Rating here will be calculated from the database */}
               <TiStarFullOutline
                 size={45}
                 className="fill-[#C2ECCD] border-1 border-black"

@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { CiCoffeeBean } from "react-icons/ci";
 import { TiStarFullOutline } from "react-icons/ti";
+import { FaMapPin, FaUserGroup, FaChildReaching } from "react-icons/fa6";
+import { BiCoffeeTogo } from "react-icons/bi";
 import ReviewForm from "./ReviewForm";
 import CafeReviewCard from "./CafeReviewCard";
 
@@ -10,7 +12,6 @@ interface CafeDetailProps {
 }
 
 const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
-  console.log(cafeData);
   return (
     <section className="my-16 px-12 lg:px-0 lg:max-w-screen-lg mx-auto">
       <h1 className="text-[36px] pt-5 text-[#582F0E] self-start">{cafeData.cafename}</h1>
@@ -34,17 +35,33 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
             <p className="text-2xl text-[#582F0E] my-4">Cafe Details</p>
           </div>
           <div className="flex-col space-y-4 text-[#36402D] text-[16px]">
-            <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">{cafeData.formattedaddress}</p>
+          <div className="flex flex-wrap space-x-2 items-center">
+                  <FaMapPin className="inline-block mr-1" />
+                  <p className="font-semibold">{cafeData.formattedaddress}</p>
             </div>
-            <div className="flex flex-wrap space-x-2">
-              {cafeData.goodforgroups && <p className="font-semibold">Good for groups</p>}
+            <div className="flex flex-wrap space-x-2 items-center">
+              {cafeData.goodforgroups && (
+                <>
+                  <FaUserGroup className="inline-block mr-1" />
+                  <p className="font-semibold">Good for groups</p>
+                </>
+              )}
             </div>
-            <div className="flex flex-wrap space-x-2">
-              {cafeData.goodforchildren && <p className="font-semibold">Good for children</p>}
+            <div className="flex flex-wrap space-x-2 items-center">
+              {cafeData.goodforchildren && (
+                <>
+                  <FaChildReaching className="inline-block mr-1" />
+                  <p className="font-semibold">Good for children</p>
+                </>
+              )}
             </div>
-            <div className="flex flex-wrap space-x-2">
-              {cafeData.takeout && <p className="font-semibold">Offers takeout</p>}
+            <div className="flex flex-wrap space-x-2 items-center">
+              {cafeData.takeout && (
+                <>
+                  <BiCoffeeTogo className="inline-block mr-1" />
+                  <p className="font-semibold">Offers takeout</p>
+                </>
+              )}
             </div>
           </div>
           <div className="flex align-middle">

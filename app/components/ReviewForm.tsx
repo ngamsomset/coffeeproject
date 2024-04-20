@@ -186,7 +186,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     type="radio"
                                     className="form-radio"
                                     name="customerService"
-                                    value="verygood"
+                                    value="Very good"
                                     onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Very good</span>
@@ -196,7 +196,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     type="radio"
                                     className="form-radio"
                                     name="customerService"
-                                    value="good"
+                                    value="Good"
                                     onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Good</span>
@@ -206,7 +206,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     type="radio"
                                     className="form-radio"
                                     name="customerService"
-                                    value="bad"
+                                    value="Bad"
                                     onChange={handleChange}
                                 ></input>
                                 <span className="ml-2">Bad</span>

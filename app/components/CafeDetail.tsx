@@ -10,6 +10,7 @@ interface CafeDetailProps {
 }
 
 const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
+  console.log(cafeData);
   return (
     <section className="my-16 px-12 lg:px-0 lg:max-w-screen-lg mx-auto">
       <h1 className="text-[36px] pt-5 text-[#582F0E] self-start">{cafeData.cafename}</h1>
@@ -34,16 +35,16 @@ const CafeDetail: React.FC<CafeDetailProps> = ({ cafeData }) => {
           </div>
           <div className="flex-col space-y-4 text-[#36402D] text-[16px]">
             <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Location:</p><p>{cafeData.formattedaddress}</p>
+              <p className="font-semibold">{cafeData.formattedaddress}</p>
             </div>
             <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Opening hours:</p><p>7.00 am - 3.30 pm</p>
+              {cafeData.goodforgroups && <p className="font-semibold">Good for groups</p>}
             </div>
             <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Telephone:</p><p>02 1234 5678</p>
+              {cafeData.goodforchildren && <p className="font-semibold">Good for children</p>}
             </div>
             <div className="flex flex-wrap space-x-2">
-              <p className="font-semibold">Website:</p><p>website.com.au</p>
+              {cafeData.takeout && <p className="font-semibold">Offers takeout</p>}
             </div>
           </div>
           <div className="flex align-middle">

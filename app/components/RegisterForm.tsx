@@ -136,30 +136,20 @@ export default function FormPage() {
     <FormItem>
       <FormLabel>Gender</FormLabel>
       <FormControl>
-        <><label>
-          <Input
-            {...field}
-            type="radio"
-            value="male"
-          />
-          Male
-        </label>
-        <label>
-          <Input
-            {...field}
-            type="radio"
-            value="female"
-          />
-          Female
-        </label>
-        <label>
-          <Input
-            {...field}
-            type="radio"
-            value="prefer_not_to_say"
-          />
-          Prefer not to say
-        </label></>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+          <label>
+            <Input {...field} type="radio" value="male" />
+            Male
+          </label>
+          <label>
+            <Input {...field} type="radio" value="female" />
+            Female
+          </label>
+          <label>
+            <Input {...field} type="radio" value="prefer_not_to_say" />
+            Prefer not to say
+          </label>
+        </div></>
       </FormControl>
     </FormItem>
   )}

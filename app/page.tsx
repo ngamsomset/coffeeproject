@@ -1,37 +1,11 @@
 import { Key } from "react";
 import ReviewCard from "./components/ReviewCard";
 import RecommendationList from "./components/RecommendationList";
-
-// Temporary list till we can connect to actual API requests with the ML model
-const cafeSuggestions = [
-  { name: 'Cafe 1', location: 'North Wollongong, NSW', slug: '#', imagePath: '/images/cafe_street.jpg' },
-  { name: 'Cafe 2', location: 'Bellambi, NSW', slug: '#', imagePath: '/images/cafe_street.jpg' },
-  { name: 'Cafe 3', location: 'Port Kembla, NSW', slug: '#', imagePath: '/images/cafe_street.jpg' },
-];
-
-// Temporary review list
-const cafeReviews = [
-  {
-    cafeName: 'Cafe 1',
-    location: 'North Wollongong, NSW',
-    slug: '#',
-    imagePath: '/images/cafe_street.jpg',
-    starRating: 4,
-    comment: "It's not bad, but the milk is too frothy.",
-    beverage: "Latte",
-  },
-  {
-    cafeName: 'Cafe 2',
-    location: 'North Wollongong, NSW',
-    slug: '#',
-    imagePath: '/images/cafe_street.jpg',
-    starRating: 2,
-    comment: "Not good, would not go here again...",
-    beverage: "Flat white",
-  },
-];
+import { getLatestReviews } from "./lib/data";
 
 export default async function Home() {
+  const latestReviews = await getLatestReviews();
+  
   return (
     <section className="my-16 max-w-screen-lg mx-auto min-h-[60vh]">
       <h1 className="text-3xl text-center mb-10 text-[#582F0E]">Top 3 Recommended Cafés for You</h1>
@@ -46,15 +20,15 @@ export default async function Home() {
       <hr className="my-10" />
       <h2 className="text-3xl text-center mb-10 text-[#582F0E]">Latest reviews</h2>
       <div className="grid gap-7">
-        {cafeReviews.map((review, index) => (
+        {latestReviews.map((review, index) => (
           <ReviewCard
-            cafeName={review.cafeName}
-            location={review.location}
-            slug={review.slug}
-            imagePath={review.imagePath}
-            starRating={review.starRating}
-            comment={review.comment}
-            beverage={review.beverage}
+            cafeName={review.cafename}
+            location={review.formattedaddress}
+            slug={"#"}
+            imagePath={"/images/cafe_street.jpg"} // Image is still hardcoded as we don't have any values stored for it.
+            starRating={review.starrating}
+            comment={review.comments}
+            beverage={review.coffeetype}
             key={index}
           />
         ))}

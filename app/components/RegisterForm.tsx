@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-
+import { useRouter,usePathname, useSearchParams } from 'next/navigation';
 import { Button } from '@/app/components/ui/button';
 import {
   Form,
@@ -16,6 +16,7 @@ import {
 } from '@/app/components/ui/form';
 import { Input } from '@/app/components/ui/input';
 import { toast } from '@/app/components/ui/use-toast';
+
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -52,12 +53,14 @@ export default function FormPage() {
       nationality: '',
     },
   });
+  const router = useRouter();
+
 
   const onSubmit = async (data: FormData) => {
     console.log('Submitting form', data);
-
+    
     const { username: email, password, fullname, birthday, gender, nationality } = data;
-
+    
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
@@ -72,10 +75,13 @@ export default function FormPage() {
       // Process response here
       console.log('Registration Successful', response);
       toast({ title: 'Registration Successful' });
+      localStorage.setItem('formData', JSON.stringify(data));
+      router.push('/questionaire');
     } catch (error: any) {
       console.error('Registration Failed:', error);
       toast({ title: 'Registration Failed', description: error.message });
     }
+    
   };
 
   return (

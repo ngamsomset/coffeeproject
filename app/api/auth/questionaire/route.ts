@@ -5,14 +5,14 @@ import { sql } from "@vercel/postgres";
 
 export async function POST(request: Request) {
   try {
-    const { question1, question2, question3, question4, question5, question6, question7, question8, question9 } = await request.json();
+    const { question1, question2, question3, question4, question5, question6, question7, question8, question9, username } = await request.json();
 
 
-    console.log({ question1, question2, question3, question4, question5, question6, question7, question8, question9 });
+    console.log({ question1, question2, question3, question4, question5, question6, question7, question8, question9, username });
 
 
     const response =
-      await sql`INSERT INTO questionaire (question1, question2, question3, question4, question5, question6, question7, question8, question9) VALUES (${question1}, ${question2},${question3},${question4},${question5},${question6},${question7},${question8},${question9})`;
+      await sql`INSERT INTO questionaire (question1, question2, question3, question4, question5, question6, question7, question8, question9,email) VALUES (${question1}, ${question2},${question3},${question4},${question5},${question6},${question7},${question8},${question9},${username})`;
   } catch (e) {
     console.log({ e });
   }

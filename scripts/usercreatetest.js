@@ -32,7 +32,42 @@ async function alterTable(client) {
       throw error;
     }
   }
-
+  async function alterTable(client) {
+    try {
+      // Add the email column if it doesn't exist
+      await client.query(`
+        ALTER TABLE IF EXISTS questionaire
+        ADD COLUMN IF NOT EXISTS email VARCHAR(255) NOT NULL DEFAULT '';
+      `);
+      console.log('Table questionaire altered successfully');
+    } catch (error) {
+      console.error('Error altering table questionaire:', error);
+      throw error;
+    }
+  }
+  async function createQuestionaireTable(client) {
+    try {
+      // Create the testinguser table if it doesn't exist
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS questionaire (
+          id SERIAL PRIMARY KEY,
+          question1 VARCHAR(255) NOT NULL,
+          question2 VARCHAR(255) NOT NULL,
+          question3 VARCHAR(255) NOT NULL,
+          question4 VARCHAR(255) NOT NULL,
+          question5 VARCHAR(255) NOT NULL,
+          question6 VARCHAR(255) NOT NULL,
+          question7 VARCHAR(255) NOT NULL,
+          question8 VARCHAR(255) NOT NULL,
+          question9 VARCHAR(255) NOT NULL
+        );
+      `);
+      console.log('Table questionaire created successfully');
+    } catch (error) {
+      console.error('Error creating table questionaire:', error);
+      throw error;
+    }
+  }
 async function main() {
   const client = await db.connect();
   await alterTable(client);

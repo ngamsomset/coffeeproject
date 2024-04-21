@@ -105,7 +105,8 @@ export default function FormQuestionaire() {
     <FormItem>
       <FormLabel>1. According to the origin of coffee bean, which one is your favourite?</FormLabel>
       <FormControl>
-        <><label>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
           <Input
             {...field}
             type="radio"
@@ -128,13 +129,357 @@ export default function FormQuestionaire() {
             value="3"
           />
           Sumatra
-        </label></>
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="4"
+          />
+          Colombia 
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="5"
+          />
+          Other
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question2"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>2. What is your prefer roast level for your coffee?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Light
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          Light-Medium 
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="3"
+          />
+          Medium
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="4"
+          />
+          Medium-Dark  
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="5"
+          />
+          Dark
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question3"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>3. What is your prefer acidity level for your coffee?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Light
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          Light-Medium 
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="3"
+          />
+          Medium
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="4"
+          />
+          Medium-Dark  
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="5"
+          />
+          Dark
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question4"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>4. What is your prefer body level for your coffee?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Low
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          Low-Medium 
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="3"
+          />
+          Medium
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="4"
+          />
+          Medium-High  
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="5"
+          />
+          High
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question5"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>5. What kind of brewing method do you prefer?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Espresso
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          Filter 
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="3"
+          />
+          French press 
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="4"
+          />
+          Cold brew  
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="5"
+          />
+          Other
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question6"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>6. Do you take price into an account?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Yes!
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          I don’t mind paying extra for a good cup of coffee!  
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question7"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>7. Do you take a cafe atmosphere into an account?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Yes!
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          Not really  
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question8"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>8. Normally do you sit in or take away?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Sit in
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          Take away 
+        </label></div>
+        </>
+      </FormControl>
+      </FormItem>
+  )}
+  />
+  <FormField
+  control={form.control}
+  name="question9"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>9. Do you prefer go to a cafe that serves food?</FormLabel>
+      <FormControl>
+        <><div style={{ display: 'flex', gap: '10px' }}>
+        <label >
+          <Input
+            {...field}
+            type="radio"
+            value="1"
+          />
+          Definitely yes
+        </label>
+        <label>
+          <Input
+            {...field}
+            type="radio"
+            value="2"
+          />
+          I don’t mind 
+        </label></div>
+        </>
       </FormControl>
     </FormItem>
   )}
-/>
+  />
 
-        
 
         <Button type='submit'>Submit</Button>
       </form>

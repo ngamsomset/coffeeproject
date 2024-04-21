@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-
+import React, { useEffect } from 'react';
 import { Button } from '@/app/components/ui/button';
 import {
   Form,
@@ -18,6 +18,7 @@ import { Input } from '@/app/components/ui/input';
 import { toast } from '@/app/components/ui/use-toast';
 
 const FormSchema = z.object({
+    username: z.string(),
   question1: z.string().min(1, {
     message: 'The question 1 must be fill.',
   }),
@@ -53,6 +54,7 @@ export default function FormQuestionaire() {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+        username: '',
       question1: '',
       question2: '',
       question3: '',
@@ -62,14 +64,25 @@ export default function FormQuestionaire() {
       question7: '',
       question8: '',
       question9: '',
-
+        
     },
   });
+  useEffect(() => {
+    // Retrieve form data from local storage
+    const storedData = localStorage.getItem('formData');
+    if (storedData) {
+      const { username } = JSON.parse(storedData);
+      console.log('Parsed form data:', username); // Log the parsed data to the console
+      form.setValue('username', username); // Set the username value in the form
+      // Set default form values with the retrieved data for other questions
+      
+    }
+  }, []); // Empty dependency array to run the effect only once when the component mounts
 
   const onSubmit = async (data: FormData) => {
     console.log('Submitting questionaire form', data);
 
-    const { question1, question2, question3, question4, question5, question6, question7, question8, question9 } = data;
+    const {username,question1, question2, question3, question4, question5, question6, question7, question8, question9 } = data;
 
     try {
       const response = await fetch('/api/auth/questionaire', {
@@ -77,7 +90,7 @@ export default function FormQuestionaire() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ question1, question2, question3, question4, question5, question6, question7, question8, question9 }),
+        body: JSON.stringify({username,question1, question2, question3, question4, question5, question6, question7, question8, question9 }),
       });
       if (!response.ok) {
         throw new Error('Network response was not ok');

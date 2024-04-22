@@ -10,8 +10,8 @@ export default async function LoginPage() {
   }
 
   return (
-    <section className='h-[75vh] flex items-center justify-center'>
-      <div className='w-[600px] m-12 bg-[#EDE0D4]'>
+    <section className='flex items-center justify-center'>
+      <div className='w-[1200px] m-12 mb-3 pb-3'>
         <LoginForm />
       </div>
     </section>

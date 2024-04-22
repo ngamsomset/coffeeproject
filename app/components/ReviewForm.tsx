@@ -11,8 +11,8 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
         comments: '',
     });
 
-    const [submitted, setSubmitted] = useState(false); // State to track form submission
-    const [loading, setLoading] = useState(false); // State to track loading
+    const [submitted, setSubmitted] = useState(false); // State to track form submission.
+    const [loading, setLoading] = useState(false); // State to track loading.
 
     const isFormValid = () => {
         return (
@@ -324,7 +324,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                         value="Eclectic"
                                         onChange={handleChange}
                                     ></input>
-                                    <span className="ml-2">Eclectic</span>
+                                    <span className="ml-2">Eclectic</span> 
                                 </label>
                             </div>
 

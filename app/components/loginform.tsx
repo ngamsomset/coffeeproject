@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'; // Import from 'next/router' instea
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-
+import Link from 'next/link';
 import { Button } from './ui/button';
 import {
   Form,
@@ -118,11 +118,13 @@ export default function LoginForm() {
           <div className="mt-4 flex flex-col items-center pd-1">
             <div className="mb-4">Sign up with us!</div>
             <div>
+              <Link href="/signuptest">
               <button
                 className="bg-button hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Sign up
               </button>
+              </Link>
             </div>
           </div>
         </form>

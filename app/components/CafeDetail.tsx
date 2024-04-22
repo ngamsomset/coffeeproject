@@ -19,7 +19,7 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
 
   return (
     <section className="my-16 px-12 lg:px-0 lg:max-w-screen-lg mx-auto">
-      <h1 className="text-[36px] pt-5 text-[#582F0E] self-start">{cafeData.cafename}</h1>
+      <h1 className="text-[36px] pt-5 text-[#582F0E] self-start font-semibold">{cafeData.cafename}</h1>
       <div className="grid grid-cols-4 gap-8 lg:gap-24 lg:max-w-screen-xl w-full mx-auto mt-5">
         <div className="col-span-4 lg:col-span-2">
           <div className="flex flex-wrap">
@@ -77,7 +77,7 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
             alt="Image of cafe"
             width={500}
             height={414}
-            className="rounded-lg lg:ml-auto lg:mb-auto"
+            className="rounded-xl lg:ml-auto lg:mb-auto shadow-xl"
           />
           <div className="lg:ml-auto ">
             <div className="flex text-[#582F0E] pt-4 pb-2">

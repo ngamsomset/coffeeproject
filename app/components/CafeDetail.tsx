@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { CiCoffeeBean } from "react-icons/ci";
-import { TiStarFullOutline } from "react-icons/ti";
 import { FaMapPin, FaUserGroup, FaChildReaching } from "react-icons/fa6";
 import { BiCoffeeTogo } from "react-icons/bi";
 import ReviewForm from "./ReviewForm";
 import CafeReviewCard from "./CafeReviewCard";
-import { getLatestCafeReviews } from "../lib/data";
+import { getCafeRating, getLatestCafeReviews } from "../lib/data";
+import StarRating from "./StarRating";
 
 interface CafeDetailProps {
   cafeData: any;
@@ -15,6 +15,7 @@ interface CafeDetailProps {
 
 const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
   const latestReviews = await getLatestCafeReviews(cafeData.cafeid);
+  const starRating = await getCafeRating(cafeData.cafeid);
 
   return (
     <section className="my-16 px-12 lg:px-0 lg:max-w-screen-lg mx-auto">
@@ -22,18 +23,7 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
       <div className="grid grid-cols-4 gap-8 lg:gap-24 lg:max-w-screen-xl w-full mx-auto mt-5">
         <div className="col-span-4 lg:col-span-2">
           <div className="flex flex-wrap">
-            <span className="self-center flex text-xl text-[#36402D] w-full mb-2">
-              <p className="mt-2">Rating</p>
-              {/* TODO: Rating here will be calculated from the database */}
-              <TiStarFullOutline
-                size={45}
-                className="fill-[#C2ECCD] border-1 border-black"
-              />
-              <TiStarFullOutline
-                size={45}
-                className="fill-[#C2ECCD] border-1 border-black"
-              />
-            </span>
+            <StarRating rating={starRating.averagestarrating}/>
           </div>
 
           <div className="flex align-middle">
@@ -81,7 +71,7 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
           )}
         </div>
         <div className="col-span-4 lg:col-span-2 order-first lg:order-none">
-          {/* This hardcoded value needs to be changed in the future */}
+          {/* This hardcoded image needs to be changed in the future */}
           <Image
             src={"/images/cafe_street.jpg"}
             alt="Image of cafe"

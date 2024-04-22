@@ -77,7 +77,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                 <div className="bg-[#582F0E] w-full h-[1000x] rounded-xl text-[#EDE0D4] p-10">
                     <form onSubmit={handleSubmit}>
                         <div className="mx-2 md:mx-4">
-                            <label className="text-2xl" htmlFor="starRating">
+                            <label className="text-xl" htmlFor="starRating">
                                 1. How would you rate the overall experience?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
@@ -134,7 +134,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                 </label>
                             </div>
 
-                            <label className=" text-2xl" htmlFor="coffeeType">
+                            <label className=" text-xl" htmlFor="coffeeType">
                                 2. What did you order?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
@@ -192,7 +192,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                             </div>
 
 
-                            <label className="text-2xl mt-6" htmlFor="customerService">
+                            <label className="text-xl mt-6" htmlFor="customerService">
                                 3. How was the customer service?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
@@ -227,7 +227,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     <span className="ml-2">Bad</span>
                                 </label>
                             </div>
-                            <label className="text-2xl mt-6" htmlFor="price">
+                            <label className="text-xl mt-6" htmlFor="price">
                                 4. What do you think about the price?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
@@ -282,7 +282,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     <span className="ml-2">Very expensive</span>
                                 </label>
                             </div>
-                            <label className="text-2xl mt-6" htmlFor="atmosphere">
+                            <label className="text-xl mt-6" htmlFor="atmosphere">
                                 5. How would you describe the atmosphere?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
@@ -328,7 +328,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                 </label>
                             </div>
 
-                            <label className="text-2xl mt-6" htmlFor="comments">
+                            <label className="text-xl mt-6" htmlFor="comments">
                                 7. Any additional comments?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap text-black">

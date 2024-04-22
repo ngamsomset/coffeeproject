@@ -142,18 +142,18 @@ export default function FormPage() {
     <FormItem>
       <FormLabel>Gender</FormLabel>
       <FormControl>
-        <><div style={{ display: 'flex', gap: '10px' }}>
-          <label>
-            <Input {...field} type="radio" value="male" />
+        <><div style={{ display: 'flex', gap: '10px', marginLeft:'10px' }}>
+          <label style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'5px'}}>
+          <Input {...field} type="radio" value="male" style={{ transform: 'scale(1.2)' }} />
             Male
           </label>
-          <label>
-            <Input {...field} type="radio" value="female" />
+          <label style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'5px'}}>
+            <Input {...field} type="radio" value="female" style={{ transform: 'scale(1.2)' }} />
             Female
           </label>
-          <label>
-            <Input {...field} type="radio" value="prefer_not_to_say" />
-            Prefer not to say
+          <label style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '5px' }}>
+            <Input {...field} type="radio" value="prefer_not_to_say" style={{ transform: 'scale(1.2)',color:'white' }} />
+            <span style={{ whiteSpace: 'nowrap' }}>Prefer not to say</span>
           </label>
         </div></>
       </FormControl>

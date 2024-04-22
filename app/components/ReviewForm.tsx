@@ -81,7 +81,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                 1. How would you rate the overall experience?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -91,7 +91,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">1 - Poor</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -101,7 +101,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">2 - Fair</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -111,7 +111,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">3 - Good</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -122,7 +122,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     <span className="ml-2">4 - Very good</span>
                                 </label>
 
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -138,7 +138,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                 2. What did you order?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -148,7 +148,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Latte</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -158,7 +158,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Flat white</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -168,7 +168,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Long black</span>
                                 </label>
-                                <label className=" items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -179,7 +179,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     <span className="ml-2">Cappucino</span>
                                 </label>
 
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -196,7 +196,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                 3. How was the customer service?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -206,7 +206,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Very good</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -216,7 +216,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Good</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -231,7 +231,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                 4. What do you think about the price?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -241,7 +241,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Very cheap</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -251,7 +251,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Cheap</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -261,7 +261,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Average</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -271,7 +271,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Expensive</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -286,7 +286,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                 5. How would you describe the atmosphere?
                             </label>
                             <div className="mt-5 lg:ml-8 mb-8 flex gap-x-12 flex-wrap">
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -296,7 +296,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Cozy</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -306,7 +306,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Vibrant</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"
@@ -316,7 +316,7 @@ const ReviewForm = ({ cafeId, userId }: { cafeId: any; userId: any; }) => {
                                     ></input>
                                     <span className="ml-2">Zen</span>
                                 </label>
-                                <label className="items-center">
+                                <label className="items-center w-full sm:w-fit">
                                     <input
                                         type="radio"
                                         className="form-radio"

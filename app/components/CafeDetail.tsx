@@ -71,7 +71,7 @@ const CafeDetail: React.FC<CafeDetailProps> = async ({ cafeData, userId }) => {
           )}
         </div>
         <div className="col-span-4 lg:col-span-2 order-first lg:order-none">
-          {/* This hardcoded image needs to be changed in the future */}
+          {/* TODO: This hardcoded image needs to be changed in the future */}
           <Image
             src={"/images/cafe_street.jpg"}
             alt="Image of cafe"

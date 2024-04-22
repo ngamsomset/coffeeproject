@@ -108,3 +108,17 @@ export async function getUserReviews(userId: any) {
     throw new Error('Failed to fetch reviews.');
   }
 }
+
+export async function getCafeRating(cafeId: any) {
+  noStore();
+  try {
+    const cafes = await sql`SELECT
+                            AVG(CAST(starRating AS DECIMAL)) AS averageStarRating
+                            FROM cafeReviews
+                            WHERE cafeid = ${cafeId}`;
+    return cafes.rows[0];
+  } catch (error) {
+    console.error('Failed to fetch cafe rating: ', error);
+    throw new Error('Failed to fetch cafe rating.');
+  }
+}

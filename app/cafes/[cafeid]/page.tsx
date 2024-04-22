@@ -5,7 +5,6 @@ import CafeDetail from "@/app/components/CafeDetail";
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from "@/app/lib/auth";
 
-// Remaining data about the individual cafe and styling still needs to be added here
 export default async function CafeDetails({
   params,
 }: {
@@ -13,7 +12,7 @@ export default async function CafeDetails({
 }) {
   const cafedata = await getCafe(params.cafeid);
 
-  // Gets the id of the currently signed in user from the session
+  // Gets the id of the currently signed in user from the session. Needed for review functionality.
   const session = await getServerSession(authOptions);
   const user = session?.user.id;
 

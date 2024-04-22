@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/app/components/ui/button';
 import {
   Form,
@@ -67,6 +68,7 @@ export default function FormQuestionaire() {
         
     },
   });
+  const router = useRouter();
   useEffect(() => {
     // Retrieve form data from local storage
     const storedData = localStorage.getItem('formData');
@@ -98,6 +100,7 @@ export default function FormQuestionaire() {
       // Process response here
       console.log('Registration Questionaire Successful', response);
       toast({ title: 'Registration Questionaire Successful' });
+      router.push('/logintest');
     } catch (error: any) {
       console.error('Registration Questionaire Failed:', error);
       toast({ title: 'Registration Questionaire Failed', description: error.message });

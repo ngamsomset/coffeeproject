@@ -5,6 +5,7 @@ import CafeReviewCard from '../components/CafeReviewCard'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../lib/auth';
 import { getUserReviews } from '../lib/data';
+import CafeCount from '../components/CafeCount';
 
 const page = async () => {
   const session = await getServerSession(authOptions);
@@ -26,7 +27,13 @@ const page = async () => {
             <PersonalDetails />
           </div>
           <div className='col-span-3 md:col-span-1'>
-            <PreferenceTile itemCount={itemCount}/>
+            <PreferenceTile/>
+          </div>
+        </div>
+        <div className='grid grid-cols-3 gap-12 md:gap-4'>
+          <div className='col-span-3 md:col-span-2 hidden md:block'></div>
+          <div className='col-span-3 md:col-span-1'>
+            <CafeCount itemCount={itemCount}/>
           </div>
         </div>
       </div>

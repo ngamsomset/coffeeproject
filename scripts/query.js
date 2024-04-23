@@ -5,7 +5,7 @@ async function queryData() {
   const client = await db.connect();
   try {
     // Query all rows from the testinguser table
-    const result = await client.query('SELECT * FROM questionaire');
+    const result = await client.query('SELECT * FROM testinguser');
     // Log the queried rows
     console.log('Queried data:', result.rows);
     return result.rows;

@@ -178,7 +178,7 @@ export default function FormQuestionaire() {
               name="question2"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>2. What is your prefer roast level for your coffee?</FormLabel>
+                  <FormLabel>2. What is your preferred roast level for your coffee?</FormLabel>
                   <FormControl>
                     <div className="flex flex-col space-y-2">
                       <label className="flex items-center">
@@ -209,7 +209,7 @@ export default function FormQuestionaire() {
               name="question3"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>3. What is your prefer acidity level for your coffee? (pH)</FormLabel>
+                  <FormLabel>3. What is your preferred acidity level for your coffee? (pH)</FormLabel>
                   <FormControl>
                     <div className="flex flex-col space-y-2">
                       <label className="flex items-center">
@@ -252,7 +252,7 @@ export default function FormQuestionaire() {
               name="question4"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>4. What is your prefer body level for your coffee?</FormLabel>
+                  <FormLabel>4. What is your preferred body level for your coffee?</FormLabel>
                   <FormControl>
                     <div className="flex flex-col space-y-2">
                       <label className="flex items-center">

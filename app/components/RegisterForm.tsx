@@ -97,10 +97,10 @@ export default function FormPage() {
               control={form.control}
               name="username"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className='mb-2'>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="example@example.com" {...field} />
+                    <Input placeholder="example@example.com" {...field}  />
                   </FormControl>
                 </FormItem>
               )}
@@ -109,7 +109,7 @@ export default function FormPage() {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className='mb-2'>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input placeholder="Password" {...field} type="password" />
@@ -121,7 +121,7 @@ export default function FormPage() {
               control={form.control}
               name="fullname"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className='mb-2'>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Ex. John Doe" {...field} />
@@ -133,7 +133,7 @@ export default function FormPage() {
               control={form.control}
               name="birthday"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className='mb-2'>
                   <FormLabel>Birthday</FormLabel>
                   <FormControl>
                     <Input {...field} type="date" />
@@ -145,7 +145,7 @@ export default function FormPage() {
   control={form.control}
   name="gender"
   render={({ field }) => (
-    <FormItem>
+    <FormItem className='mb-2'>
       <FormLabel>Gender</FormLabel>
       <FormControl>
         <><div style={{ display: 'flex', gap: '10px', marginLeft:'10px' }}>
@@ -171,7 +171,7 @@ export default function FormPage() {
               control={form.control}
               name="nationality"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className='mb-2'>
                   <FormLabel>Nationality</FormLabel>
                   <FormControl>
                     <Input placeholder="Ex. Australian" {...field} />
@@ -183,7 +183,7 @@ export default function FormPage() {
           control={form.control}
           name='postcode'
           render={({ field }) => (
-            <FormItem>
+            <FormItem className='mb-2'>
               <FormLabel>Postcode</FormLabel>
               <FormControl>
                 <Input placeholder='Enter your postcode' {...field} />

@@ -11,7 +11,7 @@ export default async function QuestionairePage() {
 
   return (
     <section className='bg-black flex items-center justify-center'>
-      <div className='w-[600px] m-12 bg-[#EDE0D4]'>
+      <div className='w-[600px] m-12 bg-[#EDE0D4] rounded-lg'>
         <FormQuestionaire />
       </div>
     </section>

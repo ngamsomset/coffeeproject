@@ -88,57 +88,60 @@ export default function FormPage() {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name='username'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder='example@example.com' {...field} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='password'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input placeholder='Password' {...field} type='password' />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='fullname'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Full Name</FormLabel>
-              <FormControl>
-                <Input placeholder='Ex. John Doe' {...field} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='birthday'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Birthday</FormLabel>
-              <FormControl>
-                <Input placeholder='' {...field} type='date' />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-                <FormField
+    <div className="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+      <div className="w-full p-8 lg:w-5/5">
+        <h1 className="text-2xl font-semibold text-center">Create an account</h1>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="example@example.com" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Password" {...field} type="password" />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="fullname"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Full Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Ex. John Doe" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="birthday"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Birthday</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="date" />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+             <FormField
   control={form.control}
   name="gender"
   render={({ field }) => (
@@ -164,19 +167,19 @@ export default function FormPage() {
   )}
 />
 
-                <FormField
-          control={form.control}
-          name='nationality'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nationality</FormLabel>
-              <FormControl>
-                <Input placeholder='Ex. Australian' {...field} />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
+            <FormField
+              control={form.control}
+              name="nationality"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nationality</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Ex. Australian" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+               <FormField
           control={form.control}
           name='postcode'
           render={({ field }) => (
@@ -188,10 +191,12 @@ export default function FormPage() {
             </FormItem>
           )}
         />
-        
-
-        <Button type='submit'>Submit</Button>
-      </form>
-    </Form>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <Button type='submit' className='bg-button hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Submit</Button>
+        </div>
+          </form>
+        </Form>
+      </div>
+    </div>
   );
 }

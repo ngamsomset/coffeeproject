@@ -38,11 +38,11 @@ const TopNav = () => {
           </Dropdown>
         )}
       </Navbar.Start>
-      <Navbar.Center className="hidden lg:flex">
-        <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold">
-          <Image width="200" height="100" src={"/logos/top_logo_Black.png"} alt="CafeMate logo"></Image>
-        </Link>
-      </Navbar.Center>
+      <Navbar.Center className="flex justify-center items-center lg:justify-start lg:items-stretch">
+    <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold">
+      <Image width="150" height="100" src={"/logos/top_logo_Black.png"} alt="CafeMate logo"></Image>
+    </Link>
+  </Navbar.Center>
       <Navbar.End>
         {status === "authenticated" && (
           <Menu horizontal className="px-1 hidden lg:flex text-xl">
@@ -51,10 +51,11 @@ const TopNav = () => {
             <Menu.Item><Link href='/api/auth/signout'>Signout</Link></Menu.Item>
           </Menu>
         )}
-        <div className='flex lg:hidden'>
-          <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold">
-            <Image width="150" height="100" src={"/logos/top_logo_Black.png"} alt="CafeMate logo"></Image>
-          </Link>
+        <div className='flex lg:hidden' >
+          {/* <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold">
+  <Image width="150" height="100" src={"/logos/top_logo_Black.png"} alt="CafeMate logo"></Image>
+</Link> */}
+
         </div>
       </Navbar.End>
     </Navbar>

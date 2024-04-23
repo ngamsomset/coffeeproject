@@ -100,7 +100,7 @@ export default function FormPage() {
                 <FormItem className='mb-2'>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="example@example.com" {...field}  />
+                    <Input placeholder="example@example.com" {...field} className='bg-white' />
                   </FormControl>
                 </FormItem>
               )}
@@ -112,7 +112,7 @@ export default function FormPage() {
                 <FormItem className='mb-2'>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Password" {...field} type="password" />
+                    <Input placeholder="Password" {...field} type="password" className='bg-white'/>
                   </FormControl>
                 </FormItem>
               )}
@@ -124,7 +124,7 @@ export default function FormPage() {
                 <FormItem className='mb-2'>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ex. John Doe" {...field} />
+                    <Input placeholder="Ex. John Doe" {...field} className='bg-white'/>
                   </FormControl>
                 </FormItem>
               )}
@@ -136,7 +136,7 @@ export default function FormPage() {
                 <FormItem className='mb-2'>
                   <FormLabel>Birthday</FormLabel>
                   <FormControl>
-                    <Input {...field} type="date" />
+                    <Input {...field} type="date" className='bg-white'/>
                   </FormControl>
                 </FormItem>
               )}
@@ -158,7 +158,7 @@ export default function FormPage() {
             Female
           </label>
           <label style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '5px' }}>
-            <Input {...field} type="radio" value="prefer_not_to_say" style={{ transform: 'scale(1.2)',color:'white' }} />
+            <Input {...field} type="radio" value="prefer_not_to_say" style={{ transform: 'scale(1.2)' }} />
             <span style={{ whiteSpace: 'nowrap' }}>Prefer not to say</span>
           </label>
         </div></>
@@ -174,7 +174,7 @@ export default function FormPage() {
                 <FormItem className='mb-2'>
                   <FormLabel>Nationality</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ex. Australian" {...field} />
+                    <Input placeholder="Ex. Australian" {...field}className='bg-white' />
                   </FormControl>
                 </FormItem>
               )}
@@ -186,7 +186,7 @@ export default function FormPage() {
             <FormItem className='mb-2'>
               <FormLabel>Postcode</FormLabel>
               <FormControl>
-                <Input placeholder='Enter your postcode' {...field} />
+                <Input placeholder='Enter your postcode' {...field}className='bg-white' />
               </FormControl>
             </FormItem>
           )}

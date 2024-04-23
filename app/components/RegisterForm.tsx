@@ -37,6 +37,9 @@ const FormSchema = z.object({
   nationality: z.string().min(6, {
     message: 'Please fill the nationality',
   }),
+  postcode: z.string().min(4, {
+    message: 'Postcode must be at least 4 characters.',
+  }),
 });
 
 type FormData = z.infer<typeof FormSchema>;
@@ -51,23 +54,23 @@ export default function FormPage() {
       birthday: '',
       gender: '',
       nationality: '',
+      postcode: '',
     },
   });
   const router = useRouter();
 
-
   const onSubmit = async (data: FormData) => {
     console.log('Submitting form', data);
-    
-    const { username: email, password, fullname, birthday, gender, nationality } = data;
-    
+
+    const { username: email, password, fullname, birthday, gender, nationality, postcode } = data;
+
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, fullname, birthday, gender, nationality }),
+        body: JSON.stringify({ email, password, fullname, birthday, gender, nationality, postcode }),
       });
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -169,6 +172,18 @@ export default function FormPage() {
               <FormLabel>Nationality</FormLabel>
               <FormControl>
                 <Input placeholder='Ex. Australian' {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='postcode'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Postcode</FormLabel>
+              <FormControl>
+                <Input placeholder='Enter your postcode' {...field} />
               </FormControl>
             </FormItem>
           )}

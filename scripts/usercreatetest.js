@@ -22,26 +22,11 @@ async function alterTable(client) {
       // Add the fullname column if it doesn't exist
       await client.query(`
         ALTER TABLE IF EXISTS testinguser
-        ADD COLUMN IF NOT EXISTS nationality VARCHAR(255) NOT NULL DEFAULT '',
-        ADD COLUMN IF NOT EXISTS gender VARCHAR(255) NOT NULL DEFAULT '',
-        ADD COLUMN IF NOT EXISTS birthdate VARCHAR(255) NOT NULL DEFAULT '';
+        ADD COLUMN IF NOT EXISTS postcode VARCHAR(255) NOT NULL DEFAULT '';
       `);
       console.log('Table testinguser altered successfully');
     } catch (error) {
       console.error('Error altering table testinguser:', error);
-      throw error;
-    }
-  }
-  async function alterTable(client) {
-    try {
-      // Add the email column if it doesn't exist
-      await client.query(`
-        ALTER TABLE IF EXISTS questionaire
-        ADD COLUMN IF NOT EXISTS email VARCHAR(255) NOT NULL DEFAULT '';
-      `);
-      console.log('Table questionaire altered successfully');
-    } catch (error) {
-      console.error('Error altering table questionaire:', error);
       throw error;
     }
   }

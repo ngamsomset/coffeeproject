@@ -18,18 +18,20 @@ async function createTable(client) {
   }
 }
 async function alterTable(client) {
-    try {
-      // Add the fullname column if it doesn't exist
-      await client.query(`
-        ALTER TABLE IF EXISTS testinguser
-        ADD COLUMN IF NOT EXISTS postcode VARCHAR(255) NOT NULL DEFAULT '';
-      `);
-      console.log('Table testinguser altered successfully');
-    } catch (error) {
-      console.error('Error altering table testinguser:', error);
-      throw error;
-    }
+  try {
+    // Drop the question8 and question9 columns if they exist
+    await client.query(`
+      ALTER TABLE IF EXISTS questionaire
+      DROP COLUMN IF EXISTS question8,
+      DROP COLUMN IF EXISTS question9;
+    `);
+    console.log('Columns question8 and question9 dropped successfully from table questionaire');
+  } catch (error) {
+    console.error('Error dropping columns:', error);
+    throw error;
   }
+}
+
   async function createQuestionaireTable(client) {
     try {
       // Create the testinguser table if it doesn't exist

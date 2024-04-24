@@ -122,3 +122,14 @@ export async function getCafeRating(cafeId: any) {
     throw new Error('Failed to fetch cafe rating.');
   }
 }
+
+export async function getCafesFromRecommendation(cafeIds: any) {
+  noStore();
+  try {
+    const cafes = await sql`SELECT * FROM cafesDetailed WHERE cafesDetailed.cafeid IN (${cafeIds})`;
+    return cafes.rows;
+  } catch (error) {
+    console.error('Failed to fetch cafes: ', error);
+    throw new Error('Failed to fetch cafes.');
+  }
+}

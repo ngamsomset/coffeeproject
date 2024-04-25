@@ -1,5 +1,6 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
+const apiUrl = process.env.NEXT_ML_API_URL;
 
 export async function POST(request: Request) {
     try {
@@ -8,8 +9,6 @@ export async function POST(request: Request) {
         // Add cafeId and userId to reviewData
         reviewData.cafeId = cafeId;
         reviewData.userId = userId;
-
-        console.log("Received review data:", reviewData);
 
         try {
             // Create the cafeReviews table 
@@ -34,6 +33,39 @@ export async function POST(request: Request) {
                 INSERT INTO cafeReviews (userId, cafeId, starRating, coffeeType, customerService, price, atmosphere, comments)
                 VALUES (${userId}, ${cafeId}, ${reviewData.starRating}, ${reviewData.coffeeType}, ${reviewData.customerService}, ${reviewData.price}, ${reviewData.atmosphere}, ${reviewData.comments})
             `;
+
+            if (apiUrl) {
+                const categoryId = reviewData.categoryId; // This currently doesn't hold a value. Need to clarify with Anton what he expects to receive.
+                const rank = reviewData.starRating; 
+
+                const requestData = {
+                    rankings: [
+                        {
+                            categoryId: categoryId,
+                            rank: rank
+                        }
+                    ]
+                };
+
+                console.log(requestData);
+
+                const apiResponse = await fetch(`${apiUrl}/users/${userId}/rankings/${cafeId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData),
+                });
+
+
+                if (!apiResponse.ok) {
+                    throw new Error('Failed to subit review to API');
+                }
+                console.log("Review submmitted to external API");
+            }
+            else {
+                console.log("Missing API URL");
+            }
 
             return NextResponse.json({ success: true });
         } catch (error) {

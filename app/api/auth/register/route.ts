@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
 import { sql } from "@vercel/postgres";
+const apiUrl = process.env.NEXT_ML_API_URL;
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +25,7 @@ export async function POST(request: Request) {
     console.log("Inserted user ID:", insertedUserId);
 
     // Now, send data to the API endpoint at localhost:5001/users/<id>
-    const apiResponse = await fetch(`http://localhost:5001/users/${insertedUserId}`, {
+    const apiResponse = await fetch(`${apiUrl}/users/${insertedUserId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

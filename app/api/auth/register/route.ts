@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
 import { sql } from "@vercel/postgres";
+const apiUrl = process.env.NEXT_ML_API_URL;
 
 export async function POST(request: Request) {
   try {
@@ -24,19 +25,26 @@ export async function POST(request: Request) {
     console.log("Inserted user ID:", insertedUserId);
 
     // Now, send data to the API endpoint at localhost:5001/users/<id>
-    const apiResponse = await fetch(`http://localhost:5001/users/${insertedUserId}`, {
+  if(apiUrl){
+    const apiResponse = await fetch(`${apiUrl}/users/${insertedUserId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ postcode, gender: genderValue, age: calculateAge(birthday) }), // Assuming you have a function to calculate age from birthday
     });
+  
 
     if (!apiResponse.ok) {
       throw new Error('Failed to send data to API');
     }
-
     console.log("Data sent to API successfully");
+  }
+  else
+  {
+    console.log("Problem about APIURL has been found");
+  }
+    
   } catch (e) {
     console.error({ e });
     return new Response("Failed to send data to API", { status: 500 }); // Return a response with an error status code and message

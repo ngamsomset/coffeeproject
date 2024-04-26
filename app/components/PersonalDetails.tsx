@@ -3,6 +3,15 @@ import React from 'react'
 const PersonalDetails = ({ userDetails }: { userDetails: any }) => {
   const { fullname, birthdate, gender, nationality } = userDetails;
 
+  // Function to format birthdate from YYYY-MM-DD to day-month-year format
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+
   // Check if nationality, gender, and birthdate are defined and not empty
   const hasNationality = nationality && nationality.trim() !== '';
   const hasGender = gender && gender.trim() !== '';
@@ -18,7 +27,7 @@ const PersonalDetails = ({ userDetails }: { userDetails: any }) => {
         <h3 className="text-2xl text-[#582F0E] w-full">Your details</h3>
         <div className='text-md'>
           {hasBirthdate ? (
-            <p>Date of Birth: {birthdate}</p>
+            <p>Date of Birth: {formatDate(birthdate)}</p>
           ) : (
             <p>Date of Birth: <span className='italic'>Not defined</span></p>
           )}

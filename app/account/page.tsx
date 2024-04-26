@@ -4,13 +4,14 @@ import PersonalDetails from '../components/PersonalDetails'
 import CafeReviewCard from '../components/CafeReviewCard'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../lib/auth';
-import { getUserReviews } from '../lib/data';
+import { getUserDetails, getUserReviews } from '../lib/data';
 import CafeCount from '../components/CafeCount';
 
 const page = async () => {
   const session = await getServerSession(authOptions);
   const userId = session?.user.id;
   const userReviews = await getUserReviews(userId);
+  const userDetails = await getUserDetails(userId);
 
   var itemCount = 0;
 
@@ -24,7 +25,7 @@ const page = async () => {
       <div className='grid'>
         <div className='grid grid-cols-3 gap-12 md:gap-4'>
           <div className='col-span-3 md:col-span-2'>
-            <PersonalDetails />
+            <PersonalDetails userDetails={userDetails}/>
           </div>
           <div className='col-span-3 md:col-span-1'>
             <PreferenceTile/>

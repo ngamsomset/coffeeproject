@@ -133,3 +133,21 @@ export async function getCafesFromRecommendation(cafeIds: any) {
     throw new Error('Failed to fetch cafes.');
   }
 }
+
+export async function getUserDetails(userId: any) {
+  noStore();
+  try{
+    const userDetails = await sql`SELECT 
+                                    fullname, 
+                                    birthdate, 
+                                    nationality, 
+                                    gender 
+                                  FROM testinguser 
+                                  WHERE id = ${userId} 
+                                  LIMIT 1;`;
+    return userDetails.rows[0];
+  } catch (error) {
+    console.error('Failed to fetch user details: ', error);
+    throw new Error('Failed to fetch user details.');
+  }
+}

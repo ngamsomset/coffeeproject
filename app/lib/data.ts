@@ -126,7 +126,9 @@ export async function getCafeRating(cafeId: any) {
 export async function getCafesFromRecommendation(cafeIds: any) {
   noStore();
   try {
-    const cafes = await sql`SELECT * FROM cafesDetailed WHERE cafesDetailed.cafeid IN (${cafeIds})`;
+    const query = 'SELECT * FROM cafesDetailed WHERE cafeid IN ($1, $2, $3)'
+    const params = cafeIds
+    const cafes = await sql.query(query, params)
     return cafes.rows;
   } catch (error) {
     console.error('Failed to fetch cafes: ', error);

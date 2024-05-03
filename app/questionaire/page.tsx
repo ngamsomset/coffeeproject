@@ -5,9 +5,10 @@ import FormQuestionaire from '../components/Questionaire';
 export default async function QuestionairePage() {
   const session = await getServerSession();
 
-  if (session) {
-    redirect('/');
-  }
+  // NOTE: Not sure why this redirect was added here. But removed it for now to enable old users to fill it out.
+  // if (session) {
+  //   redirect('/');
+  // }
 
   return (
     <section className='bg-black flex items-center justify-center'>

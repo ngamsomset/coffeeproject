@@ -146,7 +146,8 @@ export async function getCafesFromRecommendation(cafeIds: any) {
 export async function getUserDetails(userId: any) {
   noStore();
   try{
-    const userDetails = await sql`SELECT 
+    const userDetails = await sql`SELECT
+                                    email, 
                                     fullname, 
                                     birthdate, 
                                     nationality, 
@@ -170,5 +171,26 @@ export async function getCafeCount() {
   } catch (error) {
     console.error('Failed to fetch user details: ', error);
     throw new Error('Failed to fetch user details.');
+  }
+}
+
+
+export async function getUserPreferences(userEmail: any) {
+  noStore();
+  try{
+    const userPreferences = await sql`SELECT 
+                                      question1 AS origin,
+                                      question2 AS roast,
+                                      question3 AS acidity,
+                                      question4 AS body,
+                                      question5 AS brewingMethod,
+                                      question6 AS priceRange,
+                                      question7 AS coffeeType
+                                  FROM questionaire
+                                  WHERE email = ${userEmail};`;
+    return userPreferences.rows[0];
+  } catch (error) {
+    console.error('Failed to fetch user preferences: ', error);
+    throw new Error('Failed to fetch user preferences.');
   }
 }

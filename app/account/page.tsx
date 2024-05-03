@@ -4,7 +4,7 @@ import PersonalDetails from '../components/PersonalDetails'
 import CafeReviewCard from '../components/CafeReviewCard'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../lib/auth';
-import { getCafeCount, getUserDetails, getUserReviews } from '../lib/data';
+import { getCafeCount, getUserDetails, getUserPreferences, getUserReviews } from '../lib/data';
 import CafeCount from '../components/CafeCount';
 
 const page = async () => {
@@ -13,6 +13,8 @@ const page = async () => {
   const userReviews = await getUserReviews(userId);
   const userDetails = await getUserDetails(userId);
   const totalCafes = await getCafeCount();
+  const { email } = userDetails;
+  const userPreferences = await getUserPreferences(email);
 
   var itemCount = 0;
 
@@ -29,7 +31,7 @@ const page = async () => {
             <PersonalDetails userDetails={userDetails}/>
           </div>
           <div className='col-span-3 md:col-span-1'>
-            <PreferenceTile/>
+            <PreferenceTile preferences={userPreferences}/>
           </div>
         </div>
         <div className='grid grid-cols-3 gap-12 md:gap-4'>

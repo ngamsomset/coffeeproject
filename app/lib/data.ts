@@ -153,3 +153,15 @@ export async function getUserDetails(userId: any) {
     throw new Error('Failed to fetch user details.');
   }
 }
+
+export async function getCafeCount() {
+  noStore();
+  try{
+    const count = await sql`SELECT COUNT(*) FROM cafesDetailed;`;
+    const result = Number(count.rows[0].count);
+    return result;
+  } catch (error) {
+    console.error('Failed to fetch user details: ', error);
+    throw new Error('Failed to fetch user details.');
+  }
+}

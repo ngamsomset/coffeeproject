@@ -24,7 +24,7 @@ export default async function Page({
     <section className="my-16 max-w-screen-lg mx-auto min-h-[60vh]">
       <h1 className="text-3xl text-center mb-10 text-[#582F0E]">List of Cafés</h1>
       <div className='mb-12'>
-        <Search placeholder="Search cafes..." />
+        <Search placeholder="Search for cafe name or location..." />
       </div>
       <Suspense key={query + currentPage} fallback={<Loading />}>
         <CafeList query={query} currentPage={currentPage} />

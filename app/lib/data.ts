@@ -17,7 +17,14 @@ export async function getAllCafes(query: string, currentPage: number) {
   noStore();
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
-    const cafes = await sql`SELECT * FROM cafesDetailed WHERE cafesDetailed.cafename ILIKE ${`%${query}%`} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
+    const cafes = await sql`
+                        SELECT * 
+                        FROM cafesDetailed 
+                        WHERE 
+                            cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+                            cafesDetailed.formattedAddress ILIKE ${`%${query}%`}
+                        LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+                    `;
     return cafes.rows;
   } catch (error) {
     console.error('Failed to fetch cafes: ', error);

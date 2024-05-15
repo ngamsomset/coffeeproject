@@ -13,29 +13,64 @@ export async function getAllUser() {
 }
 
 const ITEMS_PER_PAGE = 9;
-export async function getAllCafes(query: string, currentPage: number) {
+export async function getAllCafes(query: string, children: boolean, currentPage: number) {
   noStore();
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  var cafes;
+
   try {
-    const cafes = await sql`
-                        SELECT * 
-                        FROM cafesDetailed 
-                        WHERE 
-                            cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
-                            cafesDetailed.formattedAddress ILIKE ${`%${query}%`}
-                        LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-                    `;
-    return cafes.rows;
+    if (children){
+      cafes = await sql`
+          SELECT * 
+          FROM cafesDetailed 
+          WHERE 
+              (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+              cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+              AND cafesDetailed.goodForChildren IS TRUE
+          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+      `;
+    } else{
+      cafes = await sql`
+          SELECT * 
+          FROM cafesDetailed 
+          WHERE 
+              (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+              cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+      `;
+    }
+      return cafes.rows;
   } catch (error) {
-    console.error('Failed to fetch cafes: ', error);
-    throw new Error('Failed to fetch cafes.');
+      console.error('Failed to fetch cafes: ', error);
+      throw new Error('Failed to fetch cafes.');
   }
 }
 
-export async function fetchCafePages(query: string) {
+export async function fetchCafePages(query: string, children:boolean) {
   noStore();
+
+  var count;
+
   try {
-    const count = await sql`SELECT COUNT(*) FROM cafesDetailed WHERE cafesDetailed.cafename ILIKE ${`%${query}%`}`;
+    if (children){
+      count = await sql`
+          SELECT COUNT(*) 
+          FROM cafesDetailed 
+          WHERE 
+              (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+              cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+              AND cafesDetailed.goodForChildren IS TRUE
+      `;
+    } else{
+      count = await sql`
+          SELECT COUNT(*) 
+          FROM cafesDetailed 
+          WHERE 
+              (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+              cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+      `;
+    }
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {

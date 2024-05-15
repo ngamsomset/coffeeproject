@@ -5,11 +5,13 @@ import CafeCard from './CafeCard';
 export default async function CafeList({
     query,
     currentPage,
+    goodForChildren
 }: {
     query: string;
     currentPage: number;
+    goodForChildren:boolean;
 }) {
-    const cafes = await getAllCafes(query, currentPage);
+    const cafes = await getAllCafes(query, goodForChildren, currentPage);
 
     return (
         <div className="md:grid grid-cols-3 gap-5 justify-between">

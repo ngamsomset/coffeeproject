@@ -13,14 +13,16 @@ export default async function Page({
       query?: string;
       page?: string;
       children: boolean;
+      groups: boolean;
     };
   }) {
   
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
   const children = searchParams?.children || false;
+  const groups = searchParams?.groups || false;
 
-  const totalPages = await fetchCafePages(query, children);
+  const totalPages = await fetchCafePages(query, children, groups);
 
   return (
     <section className="my-16 max-w-screen-lg mx-auto min-h-[60vh]">
@@ -29,7 +31,7 @@ export default async function Page({
         <Search placeholder="Search for cafe name or location..." />
       </div>
       <Suspense key={query + currentPage} fallback={<Loading />}>
-        <CafeList query={query} goodForChildren={children} currentPage={currentPage} />
+        <CafeList query={query} goodForChildren={children} goodForGroups={groups} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />

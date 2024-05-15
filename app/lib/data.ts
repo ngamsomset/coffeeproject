@@ -13,14 +13,37 @@ export async function getAllUser() {
 }
 
 const ITEMS_PER_PAGE = 9;
-export async function getAllCafes(query: string, children: boolean, currentPage: number) {
+export async function getAllCafes(query: string, children: boolean, groups:boolean, currentPage: number) {
   noStore();
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   var cafes;
 
   try {
-    if (children){
+    if (groups && children) {
+      cafes = await sql`
+          SELECT * 
+          FROM cafesDetailed 
+          WHERE 
+              (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+              cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+              AND cafesDetailed.goodForChildren IS TRUE
+              AND cafesDetailed.goodForGroups IS TRUE
+          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+      `;
+    }
+    else if (groups){
+      cafes = await sql`
+          SELECT * 
+          FROM cafesDetailed 
+          WHERE 
+              (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+              cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+              AND cafesDetailed.goodForGroups IS TRUE
+          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+      `;
+    }
+    else if (children) {
       cafes = await sql`
           SELECT * 
           FROM cafesDetailed 
@@ -30,7 +53,7 @@ export async function getAllCafes(query: string, children: boolean, currentPage:
               AND cafesDetailed.goodForChildren IS TRUE
           LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
       `;
-    } else{
+    } else {
       cafes = await sql`
           SELECT * 
           FROM cafesDetailed 
@@ -40,20 +63,41 @@ export async function getAllCafes(query: string, children: boolean, currentPage:
           LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
       `;
     }
-      return cafes.rows;
+    return cafes.rows;
   } catch (error) {
-      console.error('Failed to fetch cafes: ', error);
-      throw new Error('Failed to fetch cafes.');
+    console.error('Failed to fetch cafes: ', error);
+    throw new Error('Failed to fetch cafes.');
   }
 }
 
-export async function fetchCafePages(query: string, children:boolean) {
+export async function fetchCafePages(query: string, children: boolean, groups: boolean) {
   noStore();
 
   var count;
 
   try {
-    if (children){
+    if (groups && children) {
+      count = await sql`
+      SELECT COUNT(*) 
+      FROM cafesDetailed 
+      WHERE 
+          (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+          cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+          AND cafesDetailed.goodForChildren IS TRUE
+          AND cafesDetailed.goodForGroups IS TRUE
+      `;
+    }
+    else if (groups) {
+      count = await sql`
+          SELECT COUNT(*) 
+          FROM cafesDetailed 
+          WHERE 
+              (cafesDetailed.cafename ILIKE ${`%${query}%`} OR 
+              cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
+              AND cafesDetailed.goodForGroups IS TRUE
+      `;
+    }
+    else if (children) {
       count = await sql`
           SELECT COUNT(*) 
           FROM cafesDetailed 
@@ -62,7 +106,7 @@ export async function fetchCafePages(query: string, children:boolean) {
               cafesDetailed.formattedAddress ILIKE ${`%${query}%`})
               AND cafesDetailed.goodForChildren IS TRUE
       `;
-    } else{
+    } else {
       count = await sql`
           SELECT COUNT(*) 
           FROM cafesDetailed 
@@ -180,7 +224,7 @@ export async function getCafesFromRecommendation(cafeIds: any) {
 
 export async function getUserDetails(userId: any) {
   noStore();
-  try{
+  try {
     const userDetails = await sql`SELECT
                                     email, 
                                     fullname, 
@@ -199,7 +243,7 @@ export async function getUserDetails(userId: any) {
 
 export async function getCafeCount() {
   noStore();
-  try{
+  try {
     const count = await sql`SELECT COUNT(*) FROM cafesDetailed;`;
     const result = Number(count.rows[0].count);
     return result;
@@ -212,7 +256,7 @@ export async function getCafeCount() {
 
 export async function getUserPreferences(userEmail: any) {
   noStore();
-  try{
+  try {
     const userPreferences = await sql`SELECT 
                                       question1 AS origin,
                                       question2 AS roast,

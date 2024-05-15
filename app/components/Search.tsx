@@ -67,7 +67,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
                 />
                 <FaMagnifyingGlass className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-green peer-focus:text-green" color="#36402D" />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-1 flex-shrink-0 w-[80vw] md:w-full mx-auto">
             <div className="flex align-middle mt-3 mb-0">
                 <label htmlFor="goodForChildren" className="text-sm text-gray-600 cursor-pointer m-0">
                     Good for children?
